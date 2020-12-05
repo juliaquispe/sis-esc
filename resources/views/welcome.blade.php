@@ -58,6 +58,26 @@
                 }
             </style>
         </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Text Field </label>
+            <div class="col-sm-6">
+                <input type="text" id="1" placeholder="Username" class="form-control" onkeyup="NombreMayus()" />
+            </div>
+        </div>
+        <div class="space-4"></div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Password Field </label>
+            <div class="col-sm-6">
+                <input type="password" id="form-field-2" placeholder="Password" class="form-control" />
+            </div>
+        </div>
+        <div class="space-4"></div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Text Field </label>
+            <div class="col-sm-6">
+                <input type="text" id="form-field-1" placeholder="Username" class="form-control" />
+            </div>
+        </div>
     </div>
 </div>
 @endsection

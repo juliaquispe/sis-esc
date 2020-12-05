@@ -83,7 +83,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta charset="utf-8" />
 
-		<title>@yield('titulo', 'SRRHH') Sist. Rec. Hum.</title>
+		<title>@yield('titulo', 'SIS') /Sist. AronCar</title>
 
 		<meta name="description" content="responsive photo gallery using colorbox" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -106,8 +106,11 @@
 
         @yield("styles")
 		<script src="{{asset("assets/$theme/assets/js/ace-extra.min.js")}}"></script>
+
+        <link rel="stylesheet" href="{{asset("assets/css/toastr/toastr.min.css")}}"/>
+        @yield("styles")
     </head>
-    <body class="no-skin">
+    <body class="skin-2">
         <div id="navbar" class="navbar navbar-default          ace-save-state">
             <div class="navbar-container ace-save-state" id="navbar-container">
 				<div class="navbar-header pull-left">
@@ -143,6 +146,15 @@
 		<!-- ace scripts -->
 		<script src="{{asset("assets/$theme/assets/js/ace-elements.min.js")}}"></script>
         <script src="{{asset("assets/$theme/assets/js/ace.min.js")}}"></script>
+
+        <script src="{{asset("assets/$theme/assets/js/jquery.validate.min.js")}}"></script>
+        <script src="{{asset("assets/$theme/assets/js/messages_es.min.js")}}"></script> //CONVIERTE EL IDIOMA A ESPAÑOL
+
+        @yield("scriptsPlugins")
+
+        <script src="{{asset("assets/js/sweetalert/sweetalert.min.js")}}" type="text/javascript"></script>
+        <script src="{{asset("assets/js/toastr/toastr.min.js")}}" type="text/javascript"></script>
+        <script src="{{asset("assets/js/funciones.js")}}" type="text/javascript"></script>
         @yield("scripts")
         </div>
 

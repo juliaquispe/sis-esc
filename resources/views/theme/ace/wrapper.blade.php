@@ -75,10 +75,9 @@
                 <li class="active">Dashboard</li>
             </ul><!-- /.breadcrumb -->
 
-
-
         </div>
-        <br>
-        @yield('contenido')
+        <div class="page-content">
+            @yield('contenido')
+        </div>
     </div>
 </div>
