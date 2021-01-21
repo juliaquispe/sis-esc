@@ -6,9 +6,14 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUsuariosTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('usuario', function (Blueprint $table) {
+        Schema::create('usuarios', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('rol_id')->unsigned();
             $table->foreign('rol_id')->references('id')->on('roles')->onDelete('restrict');
@@ -16,12 +21,13 @@ class CreateUsuariosTable extends Migration
             $table->string('nombre',50);
             $table->string('apellido',50);
             $table->string('email', 50)->unique();
-            $table->string('password', 30);
+            $table->string('password', 100);
             $table->string('foto',15)->nullable();
             $table->enum('estado', ['1' , '0'])->default('1');
             $table->charset='utf8mb4';
             $table->collation='utf8mb4_spanish_ci';
             $table->timestamps();
+
         });
     }
 

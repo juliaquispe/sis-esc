@@ -83,7 +83,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta charset="utf-8" />
 
-		<title>@yield('titulo', 'SIS') /Sist. AronCar</title>
+		<title>@yield('titulo', 'SIS') /Santa Teresa</title>
 
 		<meta name="description" content="responsive photo gallery using colorbox" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -110,7 +110,7 @@
         <link rel="stylesheet" href="{{asset("assets/css/toastr/toastr.min.css")}}"/>
         @yield("styles")
     </head>
-    <body class="skin-2">
+    <body class="skin-1">
         <div id="navbar" class="navbar navbar-default          ace-save-state">
             <div class="navbar-container ace-save-state" id="navbar-container">
 				<div class="navbar-header pull-left">
@@ -146,9 +146,8 @@
 		<!-- ace scripts -->
 		<script src="{{asset("assets/$theme/assets/js/ace-elements.min.js")}}"></script>
         <script src="{{asset("assets/$theme/assets/js/ace.min.js")}}"></script>
-
         <script src="{{asset("assets/$theme/assets/js/jquery.validate.min.js")}}"></script>
-        <script src="{{asset("assets/$theme/assets/js/messages_es.min.js")}}"></script> //CONVIERTE EL IDIOMA A ESPAÑOL
+        <script src="{{asset("assets/$theme/assets/js/messages_es.min.js")}}"></script> <!--CONVIERTE EL IDIOMA A ESPAÑOL-->
 
         @yield("scriptsPlugins")
 

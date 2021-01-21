@@ -1,6 +1,6 @@
 @extends("theme.$theme.layout")
 @section('titulo')
-    Crear_Rol
+    Crear_Editar
 @endsection
 @section('scripts')
 <script src="{{asset("assets/pages/scripts/rol/validar.js")}}" type="text/javascript"></script>
@@ -8,7 +8,7 @@
 @section('contenido')
 <div class="page-header">
     <h1>
-        Roles
+        Rol
         <small>
             -<i class="ace-icon fa fa-angle-double-right"></i>
              Editar Rol
@@ -19,11 +19,11 @@
                     .btn{
                     padding: 5px;
                     font-weight: 500;
-                    font-size: 17px;
+                    font-size: 15px;
                     border-radius: 10px;
                     }
                 </style>
-                <i class="fa fa-fw fa-reply-all"></i>Ver Roles
+                <i class="fa fa-fw fa-reply-all"></i>Ver Lista Rol
               </a>
         </div>
     </h1>

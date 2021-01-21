@@ -19,11 +19,11 @@
                     .btn{
                     padding: 5px;
                     font-weight: 500;
-                    font-size: 17px;
+                    font-size: 15px;
                     border-radius: 10px;
                     }
                 </style>
-                <i class="fa fa-fw fa-reply-all"></i>Ver Roles
+                <i class="fa fa-fw fa-reply-all"></i>Ver Lista Roles
               </a>
         </div>
     </h1>

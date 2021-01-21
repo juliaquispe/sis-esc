@@ -65,7 +65,7 @@
                                     <form action="{{route('eliminar_rol', ['id' => $roles->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
                                         @csrf @method("delete")
                                         <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Eliminar este Registro">
-                                            <i class="ace-icon fa fa-trash-o"></i>
+                                            <i class="fa fa fw fa-close"></i>
                                         </button>
                                     </form>
                                 </div>
