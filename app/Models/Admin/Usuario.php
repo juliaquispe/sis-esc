@@ -2,15 +2,19 @@
 
 namespace App\Models\Admin;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Admin\Rol;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
+    protected $remember_token =false;
     Protected $table = "usuarios";
     protected $fillable = ['rol_id','usuario','nombre','apellido', 'email', 'password', 'foto', 'estado'];
 
@@ -39,6 +43,20 @@ class Usuario extends Model
         } else{
             return false;
         }
+    }
+    public function setSession($rol)
+    {
+            Session::put(
+            [
+                'usuario'=> $this->usuario,
+                'usuario_id' =>$this->id,
+                'nombre_usuario'=>$this->nombre,
+                'apellido_usuario'=>$this->apellido,
+                'email_usuario'=>$this->email,
+                'foto_usuario'=>$this->foto,
+                'rol_usuario'=>$this->rol->rol,
+            ]
+            );
     }
 }
 

@@ -154,11 +154,6 @@
                     </a>
 
                     <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            5 Messages
-                        </li>
-
                         <li class="dropdown-content">
                             <ul class="dropdown-menu dropdown-navbar">
                                 <li>
@@ -177,118 +172,70 @@
                                         </span>
                                     </a>
                                 </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-                                        <span class="msg-body">
-                                            <span class="msg-title">
-                                                <span class="blue">Susan:</span>
-                                                Vestibulum id ligula porta felis euismod ...
-                                            </span>
-
-                                            <span class="msg-time">
-                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                <span>20 minutes ago</span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-                                        <span class="msg-body">
-                                            <span class="msg-title">
-                                                <span class="blue">Bob:</span>
-                                                Nullam quis risus eget urna mollis ornare ...
-                                            </span>
-
-                                            <span class="msg-time">
-                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                <span>3:15 pm</span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
-                                        <span class="msg-body">
-                                            <span class="msg-title">
-                                                <span class="blue">Kate:</span>
-                                                Ciao sociis natoque eget urna mollis ornare ...
-                                            </span>
-
-                                            <span class="msg-time">
-                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                <span>1:33 pm</span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img src="assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
-                                        <span class="msg-body">
-                                            <span class="msg-title">
-                                                <span class="blue">Fred:</span>
-                                                Vestibulum id penatibus et auctor  ...
-                                            </span>
-
-                                            <span class="msg-time">
-                                                <i class="ace-icon fa fa-clock-o"></i>
-                                                <span>10:09 am</span>
-                                            </span>
-                                        </span>
-                                    </a>
-                                </li>
                             </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="inbox.html">
-                                See all messages
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="light-blue dropdown-modal">
+                <li class="blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="{{asset("assets/$theme/assets/images/avatars/user.jpg")}}" alt="Jason's Photo" />
+                        @php
+                            $aux= session()->get('foto_usuario');
+                        @endphp
+                        @if(session()->get('foto_usuario')==null)
+                            <img class="nav-user-photo" src="{{asset("assets/$theme/assets/images/avatars/usuario.jpg")}}" />
+                        @else
+                            <img src="{{Storage::url("datos/fotos/usuario/$aux")}}" class="nav-user-photo" >
+                        @endif
+
                         <span class="user-info">
-                            <small>Welcome,</small>
-                            Jason
+                            <small>Bienvenido</small>
+                            {{session()->get('nombre_usuario')}}
                         </span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
                     </a>
 
-                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                        <li>
-                            <a href="#">
-                                <i class="ace-icon fa fa-cog"></i>
-                                Settings
-                            </a>
+                    <ul class="dropdown-menu-right dropdown-navbar navbar-grey dropdown-menu dropdown-caret dropdown-close">
+                        <li class="dropdown-header" style="text-align: center">
+                            <i class="menu-icon fa fa-user icon-animated-vertical"> <b> Perfil de Usuario</b></i>
+
                         </li>
 
-                        <li>
-                            <a href="profile.html">
-                                <i class="ace-icon fa fa-user"></i>
-                                Profile
-                            </a>
+                        <li class="dropdown-content">
+                            <ul class="dropdown-menu dropdown-navbar">
+                                <li style="background: rgb(218, 230, 230)">
+                                    <a href="#" class="clearfix" align="center">
+                                        @if(session()->get('foto_usuario')==null)
+                                            <img class="img-circle" src="{{asset("assets/$theme/assets/images/avatars/dos.jpg")}}" width="35%"/>
+                                        @else
+                                            <img class="img-circle" style="center" src="{{Storage::url("datos/fotos/usuario/$aux")}}" width="35%">
+                                        @endif
+                                    </a>
+                                    <a href="#">
+                                        <i class="blue menu-icon fa fa-caret-right"></i>
+                                        <span class="blue"><b>Usuario:</b>&nbsp;</span>
+                                        <b>  {{session()->get('usuario')}}</b>
+                                        <br>
+                                        <i class="blue menu-icon fa fa-caret-right"></i>
+                                        <span class="blue"><b>Nombre:</b></span>
+                                        <b>  {{session()->get('nombre_usuario')}} {{session()->get('apellido_usuario')}}</b>
+                                        <br>
+                                        <i class="blue menu-icon fa fa-caret-right"></i>
+                                        <span class="blue"><b>Correo:</b> </span>
+                                        <b> &nbsp; {{session()->get('email_usuario')}}</b>
+                                        <br>
+                                        <i class="blue menu-icon fa fa-caret-right"></i>
+                                        <span class="blue"><b>Rol:</b> &nbsp; &nbsp; &nbsp;</span>
+                                        <b>  &nbsp; {{session()->get('rol_usuario')}}</b>
+                                        <br>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-
-                        <li class="divider"></li>
-
-                        <li>
-                            <a href="#">
-                                <i class="ace-icon fa fa-power-off"></i>
-                                Logout
+                        <li class="dropdown-footer">
+                            <a href="{{route('logout')}}" >
+                                <span class="label label-xlg label-danger arrowed arrowed-right">SALIR</span>
                             </a>
                         </li>
                     </ul>

@@ -28,6 +28,7 @@
         </div>
     </h1>
 </div>
+@include('mensajes.incorrecto')
 <div class="row">
     <div class="col-xs-12">
         @include('mensajes.error')

@@ -4,3 +4,4 @@ php artisan migrate PARA MIGRAR LOS DATOS
 php artisan make:model Models/Admin/Unidad CREAR MODELO
 php artisan migrate:refresh RESETEA LAS TABLAS DE BD
 php artisan make:request ValidacionRol PARA CREAR VALIDACION
+hp artisan make:middleware PermisoAñadir PARA CREAR MIDDLEWARE

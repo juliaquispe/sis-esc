@@ -12,15 +12,18 @@
     <h1>
         Lista de Usuarios
         <div class="box-tools pull-right">
-            <a href="{{route('crear_usuario')}}" class="btn btn-block btn-success btn-sm">
-                <i class="fa fa-fw fa-plus-circle"></i> Crear Usuario
-            </a>
+            @if(Auth::user()->rol->añadir ==1)
+                <a href="{{route('crear_usuario')}}" class="btn btn-block btn-success btn-sm">
+                    <i class="fa fa-fw fa-plus-circle"></i> Crear Usuario
+                </a>
+            @endif
         </div>
     </h1>
 </div>
 <div class="row">
     <div class="col-xs-12">
         @include('mensajes.correcto')
+        @include('mensajes.incorrecto')
         <div class="box-body">
             <table id="tabla-data" class="table  table-bordered table-hover">
                 <thead>
@@ -45,28 +48,35 @@
                                 <div class="hidden-sm hidden-xs btn-group">
                                     <a href="{{route('ver_usuario', $usuarios)}}" class="ver-usuario btn btn-info btn-xs tooltipC" title="Ver Foto" id="ver-usuario">
                                         <i class="fa fa-fw  fa-camera"></i>
+                                        @csrf
                                     </a>
                                 </div>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <div class="hidden-sm hidden-xs btn-group">
-                                    <a href="{{route('editar_usuario', ['id' => $usuarios->id])}}" class="btn btn-warning btn-xs tooltipC" title="Editar Usuario">
-                                        <i class="fas fa fa-pencil"></i>
-                                    </a>
+                                    @if(Auth::user()->rol->editar ==1)
+                                        <a href="{{route('editar_usuario', ['id' => $usuarios->id])}}" class="btn btn-warning btn-xs tooltipC" title="Editar Usuario">
+                                            <i class="fas fa fa-pencil"></i>
+                                        </a>
+                                    @endif
                                 </div>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <div class="hidden-sm hidden-xs btn-group">
-                                    <form action="{{route('eliminar_usuario', ['id' => $usuarios->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
-                                        @csrf @method("delete")
-                                        <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Eliminar Usuario">
-                                            <i class="ace-icon fa fa-trash-o"></i>
-                                        </button>
-                                    </form>
+                                    @if(Auth::user()->rol->eliminar ==1)
+                                        <form action="{{route('eliminar_usuario', ['id' => $usuarios->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
+                                            @csrf @method("delete")
+                                            <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Eliminar Usuario">
+                                                <i class="ace-icon fa fa-trash-o"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                                 <div class="hidden-sm hidden-xs btn-group">
-                                    <form action="{{route('inactivar_usuario', ['id' => $usuarios->id])}}" class="d-inline form-estado" method="POST" id="form-estado">
-                                        @csrf @method("put")
-                                        <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Inactivar Ususario">
-                                            <i class="ace-icon fa fa-ban"></i>
-                                        </button>
-                                    </form>
+                                    @if(Auth::user()->rol->editar ==1)
+                                        <form action="{{route('inactivar_usuario', ['id' => $usuarios->id])}}" class="d-inline form-estado" method="POST" id="form-estado">
+                                            @csrf @method("put")
+                                            <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Inactivar Ususario">
+                                                <i class="ace-icon fa fa-ban"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                             </td>
                         </tr>

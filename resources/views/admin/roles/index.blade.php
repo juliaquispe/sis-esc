@@ -9,16 +9,19 @@
 <div class="page-header">
     <h1>
         Lista de Roles
-        <div class="box-tools pull-right">
-            <a href="{{route('crear_rol')}}" class="btn btn-block btn-success btn-sm">
-                <i class="fa fa-fw fa-plus-circle"></i> Crear Rol
-            </a>
-        </div>
+        @if(Auth::user()->rol->añadir ==1)
+            <div class="box-tools pull-right">
+                <a href="{{route('crear_rol')}}" class="btn btn-block btn-success btn-sm">
+                    <i class="fa fa-fw fa-plus-circle"></i> Crear Rol
+                </a>
+            </div>
+        @endif
     </h1>
 </div>
 <div class="row">
     <div class="col-xs-12">
         @include('mensajes.correcto')
+        @include('mensajes.incorrecto')
         <div class="box-body">
             <table id="tabla-data" class="table  table-bordered table-hover">
                 <thead>
@@ -57,17 +60,21 @@
                                 </td>
                             <td style="text-align: center;">
                                 <div class="hidden-sm hidden-xs btn-group">
-                                    <a href="{{route('editar_rol', ['id' => $roles->id])}}" class="btn btn-warning btn-xs tooltipC" title="Editar este Registro">
-                                        <i class="fas fa fa-pencil"></i>
-                                    </a>
+                                    @if(Auth::user()->rol->editar ==1)
+                                        <a href="{{route('editar_rol', ['id' => $roles->id])}}" class="btn btn-warning btn-xs tooltipC" title="Editar este Registro">
+                                            <i class="fas fa fa-pencil"></i>
+                                        </a>
+                                    @endif
                                 </div>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <div class="hidden-sm hidden-xs btn-group">
-                                    <form action="{{route('eliminar_rol', ['id' => $roles->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
-                                        @csrf @method("delete")
-                                        <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Eliminar este Registro">
-                                            <i class="fa fa fw fa-close"></i>
-                                        </button>
-                                    </form>
+                                    @if(Auth::user()->rol->eliminar ==1)
+                                        <form action="{{route('eliminar_rol', ['id' => $roles->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
+                                            @csrf @method("delete")
+                                            <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Eliminar este Registro">
+                                                <i class="fa fa fw fa-close"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                             </td>
                         </tr>
