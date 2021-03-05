@@ -2,7 +2,7 @@
     <div class="col-xs-5">
         <div class="col-sm-12" id="default-buttons">
             <button class="boton_cancelar" type="reset">Cancelar</button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <style type="text/css">
                 .boton_cancelar{
                 text-decoration: none;

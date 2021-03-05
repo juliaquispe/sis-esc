@@ -29,7 +29,7 @@ class ValidacionRol extends FormRequest
     {
         return[
             'rol.required' => 'El nombre del rol es requerido',
-            'rol.max' => 'los caracteres de rol deben ser menor o igual a 50 carracteres',
+            'rol.max' => 'El rol debe ser menor o igual a 50 carracteres',
             'rol.unique' => 'Nombre de Rol ya fue tomado',
         ];
     }

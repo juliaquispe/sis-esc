@@ -13,27 +13,21 @@
 					<div class="col-sm-10 col-sm-offset-1">
 						<div class="login-container">
 							<div class="center">
-								<h1>
-                                    <img class="nav-user-photo" src="{{asset("assets/$theme/assets/images/gallery/corazon.jpg")}}" />
-									<i class="ace-icon fa fa-leaf green"></i>
-									<span class="red">CLINICA</span>
-									<span class="white" id="id-text2">SANTA TERESA</span>
-								</h1>
-								<h4 class="blue" id="id-company-text">&copy; Sistema de control de Historial y Fichaje </h4>
+                                <div class="space"></div>
+								<div>
+                                    <img class="nav-user-photo" style="border-radius: 800px" width="120" height="120" src="{{asset("assets/$theme/assets/images/gallery/clinica.jpg")}}" />
+                                    <span style="color: rgb(238, 221, 233)"><b><u>CLÍNICA</u></b></span>
+                                    <font style="color: rgb(74, 143, 199)" size="6" face="impact"><u>SANTA TERESA</u></font>
+                                </div>
+								<h5 style="color: rgb(83, 226, 195)" id="id-company-text">Sistema de control de Historial y Fichaje </h5>
 							</div>
-
-							<div class="space-6"></div>
-
 							<div class="position-relative">
 								<div id="login-box" class="login-box visible widget-box no-border">
 									<div class="widget-body">
 										<div class="widget-main">
-											<h4 class="header blue lighter bigger">
-												<i class="ace-icon fa fa-coffee green"></i>
-												Por favor ingrese su informacion
+											<h4 class="header royal  bigger"> {{--poner color--}}
+												Inicie Sesión
 											</h4>
-
-											<div class="space-6"></div>
                                             @if (session('status'))
                                                 <div class="alert alert-success" role="alert">
                                                     {{ session('status') }}
@@ -49,7 +43,6 @@
                                                     </div>
                                                 </div>
                                             @endif
-
                                             <form action="{{route('login_post')}}" method="POST" autocomplete="off">
                                                 @csrf <!--esto es untocken para enviar datos con metodo post-->
 												<fieldset>
@@ -59,43 +52,21 @@
 															<i class="ace-icon fa fa-user"></i>
 														</span>
 													</label>
-
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
 															<input name="password" type="password" class="form-control" placeholder="Contraseña" />
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
 													</label>
-
-													<div class="space"></div>
-
-													<div class="clearfix">
+													<div class="clearfix" style="align: center">
                                                         <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
 															<i class="ace-icon fa fa-key"></i>
-															<span class="bigger-110">Login</span>
+															<span class="bigger-110">Ingresar</span>
 														</button>
 													</div>
-
-													<div class="space-4"></div>
 												</fieldset>
 											</form>
 										</div><!-- /.widget-main -->
-
-										<div class="toolbar clearfix">
-											<div>
-												<a href="#" data-target="#forgot-box" class="forgot-password-link">
-													<i class="ace-icon fa fa-arrow-left"></i>
-													I forgot my password
-												</a>
-											</div>
-
-											<div>
-												<a href="#" data-target="#signup-box" class="user-signup-link">
-													I want to register
-													<i class="ace-icon fa fa-arrow-right"></i>
-												</a>
-											</div>
-										</div>
 									</div><!-- /.widget-body -->
 								</div><!-- /.login-box -->
                             </div><!-- /.position-relative -->
