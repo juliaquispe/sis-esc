@@ -59,7 +59,7 @@
                                         <form action="{{route('eliminar_usuario', ['id' => $usuarios->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
                                             @csrf @method("delete")
                                             <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Eliminar Usuario">
-                                                <i class="ace-icon fa fa-trash-o"></i>
+                                                <i class="fa fa-close"></i>
                                             </button>
                                         </form>
                                     @endif

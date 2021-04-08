@@ -9,14 +9,15 @@
                 padding: 5px;
                 font-weight: 500;
                 font-size: 17px;
-                color: #e5eeed;
-                background-color: #5f7572;
+                color: #8b2619;
+                background-color: #f08374;
                 border-radius: 10px;
-                border: 2px solid #3c4b4b;
+                border: 2px solid #8b2619;
                 }
                 .boton_cancelar:hover{
-                color: #3c4b4b;
-                background-color: #aeb4b3;
+                color: #f3dfdc;;
+                background-color: #8b2619;
+                border: 2px solid  #f1bab2;
                 }
             </style>
         <button class="boton_guardar" type="submit">Guardar</button>
@@ -26,14 +27,15 @@
                 padding: 5px;
                 font-weight: 500;
                 font-size: 17px;
-                color: #e5eeed;
-                background-color: #119781;
+                color: #115720;
+                background-color: #72c4e4;
                 border-radius: 10px;
-                border: 2px solid #135a51;
+                border: 2px solid #115720;
                 }
                 .boton_guardar:hover{
-                color: #135a51;
-                background-color: #adebd7;
+                color: #72c4e4;
+                background-color: #115720;
+                border: 2px solid #72c4e4;
                 }
             </style>
         </div>

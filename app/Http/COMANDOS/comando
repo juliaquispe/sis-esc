@@ -1,6 +1,8 @@
 php artisan make:controller admin/RolController -r PARA CREAR UN CONTROLADOR
 php artisan make:migration create_roles_table --create=roles CREA UN MIGRACION
+php artisan migrate:refresh ==para borrar las tablas y crear nuevamente
 php artisan migrate PARA MIGRAR LOS DATOS
+php artisan db:seed --class=UsuarioAdminSeeder == para llenar datos a la bd
 php artisan make:model Models/Admin/Unidad CREAR MODELO
 php artisan migrate:refresh RESETEA LAS TABLAS DE BD
 php artisan make:request ValidacionRol PARA CREAR VALIDACION

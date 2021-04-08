@@ -9,14 +9,15 @@
                 padding: 5px;
                 font-weight: 500;
                 font-size: 17px;
-                color: #e5eeed;
-                background-color: #5f7572;
+                color: #8b2619;
+                background-color: #f08374;
                 border-radius: 10px;
-                border: 2px solid #3c4b4b;
+                border: 2px solid #8b2619;
                 }
                 .boton_cancelar:hover{
-                color: #3c4b4b;
-                background-color: #aeb4b3;
+                color: #f3dfdc;;
+                background-color: #8b2619;
+                border: 2px solid  #f1bab2;
                 }
             </style>
             <button class="boton_personalizado" type="submit">Actualizar</button>
@@ -26,14 +27,15 @@
                 padding: 5px;
                 font-weight: 500;
                 font-size: 17px;
-                color: #e5eeed;
-                background-color: #3b75ac;
+                color:  #144288;
+                background-color: #79aff5;
                 border-radius: 10px;
                 border: 2px solid #144288;
                 }
                 .boton_personalizado:hover{
-                color: #144288;
-                background-color: #79aff5;
+                color: #79aff5;
+                background-color: #144288;
+                border: 2px solid #79aff5;
                 }
             </style>
         </div>

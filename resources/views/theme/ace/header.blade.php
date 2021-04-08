@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="{{asset("assets/css/zoom.css")}}" />
 <div class="navbar-buttons navbar-header pull-right" role="navigation">
     <ul class="nav ace-nav">
         <li class="grey dropdown-modal">
@@ -176,31 +176,26 @@
             </ul>
         </li>
 
-        {{-- <li class="blue dropdown-modal">
+        <li class="blue dropdown-modal">
             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                 @php
                     $aux= session()->get('foto_usuario');
                 @endphp
                 @if(session()->get('foto_usuario')==null)
-                    <img class="nav-user-photo" src="{{asset("assets/$theme/assets/images/avatars/usuario.jpg")}}" />
+                    <img class="nav-user-photo" src="{{asset("assets/$theme/assets/images/avatars/dos.jpg")}}" />
                 @else
-                    <img src="{{Storage::url("datos/fotos/usuario/$aux")}}" class="nav-user-photo" >
+                    <img src="{{Storage::url("datos/usuario/fotos/$aux")}}" class="nav-user-photo" >
                 @endif
-
                 <span class="user-info">
                     <small>Bienvenido</small>
                     {{session()->get('nombre_usuario')}}
                 </span>
-
                 <i class="ace-icon fa fa-caret-down"></i>
             </a>
-
             <ul class="dropdown-menu-right dropdown-navbar navbar-grey dropdown-menu dropdown-caret dropdown-close">
                 <li class="dropdown-header" style="text-align: center">
                     <i class="menu-icon fa fa-user icon-animated-vertical"> <b> Perfil de Usuario</b></i>
-
                 </li>
-
                 <li class="dropdown-content">
                     <ul class="dropdown-menu dropdown-navbar">
                         <li style="background: rgb(218, 230, 230)">
@@ -208,7 +203,7 @@
                                 @if(session()->get('foto_usuario')==null)
                                     <img class="img-circle" src="{{asset("assets/$theme/assets/images/avatars/dos.jpg")}}" width="35%"/>
                                 @else
-                                    <img class="img-circle" style="center" src="{{Storage::url("datos/fotos/usuario/$aux")}}" width="35%">
+                                    <img class="img-circle zoom" style="center" src="{{Storage::url("datos/usuario/fotos/$aux")}}" width="35%">
                                 @endif
                             </a>
                             <a href="#">
@@ -234,10 +229,15 @@
                 </li>
                 <li class="dropdown-footer">
                     <a href="{{route('logout')}}" >
-                        <span class="label label-xlg label-danger arrowed arrowed-right">SALIR</span>
+                        <span class="label label-xlg label-danger arrowed arrowed-right personalizado">SALIR</span>
+                        <style type="text/css">
+                            .personalizado:hover{
+                            color: #e6e4a9;
+                            }
+                        </style>
                     </a>
                 </li>
             </ul>
-        </li> --}}
+        </li>
     </ul>
 </div>

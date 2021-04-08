@@ -44,6 +44,7 @@ class Kernel extends HttpKernel
         'permisocrear' => \App\Http\Middleware\PermisoCrear::class,
         'permisoeditar' => \App\Http\Middleware\PermisoEditar::class,
         'permisoeliminar' => \App\Http\Middleware\PermisoEliminar::class,
+        'permisoadmin' => \App\Http\Middleware\Permisoadmin::class,
     ];
 
     protected $middlewarePriority = [

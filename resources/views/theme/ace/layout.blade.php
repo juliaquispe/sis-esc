@@ -29,17 +29,29 @@
         <link rel="stylesheet" href="{{asset("assets/css/custom.css")}}">
 		<script src="{{asset("assets/$theme/assets/js/ace-extra.min.js")}}"></script>
         <link rel="stylesheet" href="{{asset("assets/css/toastr/toastr.min.css")}}"/>
+        <link rel="stylesheet" href="{{asset("assets/css/jquery.dataTables.min.css")}}">
+        <link rel="stylesheet" href="{{asset("assets/css/flatpickr.min.css")}}"/>
         @yield("styles")
     </head>
-
-    <body class="skin-1">
+@php
+      $clinica=MyHelper:: Datos_Clinica();
+      $tema=$clinica->color;
+@endphp
+    <body class="{{$tema}}">
         <div id="navbar" class="navbar navbar-default          ace-save-state">
             <div class="navbar-container ace-save-state" id="navbar-container">
 				<div class="navbar-header pull-left">
 					<a href="index.html" class="navbar-brand">
 						<small>
-							<i class="fa fa-leaf"></i>
-							Ace Admin
+                            <i>
+                                @if ($clinica->logo==null)
+                                <img class="img-circle zoom" src="{{asset("assets/$theme/assets/images/avatars/dos.jpg")}}" width="6%"/>
+                                @else
+                                <img class="img-circle zoom" src="{{Storage::url("Datos/Clinica/$clinica->logo")}}" width="6%"/>
+                                @endif
+
+                            </i>&nbsp;&nbsp;
+							{{$clinica->nombre}}
 						</small>
 					</a>
                 </div>
@@ -76,6 +88,8 @@
         <script src="{{asset("assets/js/toastr/toastr.min.js")}}" type="text/javascript"></script>
         <script src="{{asset("assets/js/funciones.js")}}" type="text/javascript"></script>
         <script src="{{asset("assets/js/scripts.js")}}" type="text/javascript"></script>
+        <script src="{{asset("assets/js/datatables/jquery.dataTables.min.js")}}" type="text/javascript"></script>
+        <script src="{{asset("assets/js/flatpickr/flatpickr.js")}}" type="text/javascript"></script>
         @yield("scripts")
         </div>
 

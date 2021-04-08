@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\ServiceProvider;
 use App\Models\Admin\Menu;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,8 +17,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('theme.ace.aside', function ($view) {
-            $menus=Menu::getMenu();
+            $menus=Menu::getMenu(true);
             $view->with('menusComposer',$menus);
         });
-        View::share('theme', 'ace');    }
+        View::share('theme', 'ace');
+    }
 }

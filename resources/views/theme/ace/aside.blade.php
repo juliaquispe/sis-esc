@@ -35,58 +35,6 @@
               @endif
               @include("theme.$theme.menu-item", ["item" => $item])<!-- me redirecciona a la vista menu.item -->
           @endforeach
-        {{-- <li class="">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-desktop"></i>
-                <span class="menu-text">
-                    Roles
-                </span>
-                <b class="arrow fa fa-angle-down"></b>
-                <ul class="submenu">
-                    <li class="">
-                        <a href="{{route('rol')}}">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Lista de Roles
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </a>
-            <b class="arrow"></b>
-        </li> --}}
-
-
-        {{-- <li class="">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-list"></i>
-                <span class="menu-text"> Usuarios </span>
-
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
-
-            <b class="arrow"></b>
-
-            <ul class="submenu">
-                <li class="">
-                    <a href="{{route('usuario')}}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Usuarios Activos
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="{{route('usuario_inactivo')}}">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Usuarios Inactivos
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            </ul>
-        </li> --}}
     </ul><!-- /.nav-list -->
 </div>
 

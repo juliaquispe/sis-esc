@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    SIS.validacionGeneral('form-general'); //form-general porq con ese id lo creamos al form
     $('#foto').fileinput({
         language: 'es',     //lenguaje
         allowedFileExtensions: ['jpg', 'jpeg', 'png'], //archivos permitidos
@@ -10,7 +9,6 @@ $(document).ready(function(){
         dropZoneEnabled: true,     //permitir arrastrar imagenes
         theme: "fa",    //para llamar iconos fa
     });
-
 
     const reglas = {
         re_password:
@@ -24,7 +22,7 @@ $(document).ready(function(){
             equalTo:'Las contraseñas no son iguales'
         }
     };
-    SIS.validacionGeneral('form-general', reglas, mensajes); //form general porq con ese id lo creamos al form de menu
+    SIS.validacionGeneral('form-general', reglas, mensajes); //form general porq con ese id lo creamos al form de crear y editar
     $('#password').on('change', function(){
         const valor = $(this).val();
         if(valor != ''){
@@ -33,5 +31,4 @@ $(document).ready(function(){
             $('#re_password').prop('required', false);
         }
     });
-
 });

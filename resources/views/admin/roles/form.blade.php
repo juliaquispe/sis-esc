@@ -1,6 +1,6 @@
 
 <div class="form-group">
-    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Nombre </label>
+    <label class="col-sm-3 control-label no-padding-right requerido" for="form-field-1"> Nombre </label>
     <div class="col-sm-6">
         <input type="text" class="form-control" placeholder="Ejm: Administrador"  id="rol" name="rol" value="{{old('rol', $rol->rol ?? '')}}" required onkeyup="NombreMayus()"/>
     </div>

@@ -1,0 +1,89 @@
+@extends("theme.$theme.layout")
+@section('titulo')
+    Fichas
+@endsection
+@section('scripts')
+<script src="{{asset("assets/pages/scripts/alert/alert.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/datatables/datatables.js")}}" type="text/javascript"></script>
+@endsection
+@section('contenido')
+<div class="page-header">
+    <h1>
+        Lista de Fichas
+        @if(Auth::user()->rol->añadir ==1)
+            <div class="box-tools pull-right">
+                <a href="{{route('crear_unidad')}}" class="btn btn-block btn-success btn-sm">
+                    <i class="fa fa-fw fa-plus-circle"></i> Crear Ficha
+                </a>
+            </div>
+        @endif
+    </h1>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        @include('mensajes.correcto')
+        @include('mensajes.incorrecto')
+        <div class="box-body">
+            <table id="tabla-data" class="table  table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="col-lg-1" style="text-align: center;">Expediente</th>
+                        <th class="col-lg-3" style="text-align: center;">Paciente</th>
+                        <th class="col-lg-2" style="text-align: center;">Especielidad</th>
+                        <th class="col-lg-3" style="text-align: center;">Doctor</th>
+                        <th class="col-lg-1" style="text-align: center;">Hora</th>
+                        <th class="col-lg-1" style="text-align: center;">Estado</th>
+                        <th class="col-lg-1" style="text-align: center;">Opción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center;">EXP1</td>
+                        <td style="text-align: center;">JAIME</td>
+                        <td style="text-align: center;">DENTAL</td>
+                        <td style="text-align: center;">JULIO</td>
+                        <td style="text-align: center;">09:00</td>
+                        <td style="text-align: center;">En Espera</td>
+                        <td style="text-align: center;">
+                            <div class="hidden-sm hidden-xs btn-group">
+                                @if(Auth::user()->rol->editar ==1)
+                                    <a href="{{route('agregar_cita', ['id' => 'hol'])}}" class="btn btn-palevioletred btn-xs tooltipC" title="Editar este Registro">
+                                        <i class="fas fa fa-stethoscope"></i>
+                                    </a>
+                                @endif
+                            </div>
+                        </td>
+                    {{-- @foreach ($datos as $unidad)
+                        <tr>
+                            <td style="text-align: center;">{{$unidad->nombre}}</td>
+                            <td style="text-align: center;">{{$unidad->sigla}}</td>
+                            <td style="text-align: center;">{{$unidad->descripcion}}</td>
+                            <td style="text-align: center;">
+                                <div class="hidden-sm hidden-xs btn-group">
+                                    @if(Auth::user()->rol->editar ==1)
+                                        <a href="{{route('editar_unidad', ['id' => $unidad->id])}}" class="btn btn-warning btn-xs tooltipC" title="Editar este Registro">
+                                            <i class="fas fa fa-pencil"></i>
+                                        </a>
+                                    @endif
+                                </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="hidden-sm hidden-xs btn-group">
+                                    @if(Auth::user()->rol->eliminar ==1)
+                                        <form action="{{route('eliminar_unidad', ['id' => $unidad->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
+                                            @csrf @method("delete")
+                                            <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Eliminar este Registro">
+                                                <i class="fa fa fw fa-close"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach --}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endsection
+
+

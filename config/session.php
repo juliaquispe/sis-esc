@@ -31,8 +31,9 @@ return [
     |
     */
 
-    'lifetime' => env('SESSION_LIFETIME', 120),
+    // 'lifetime' => env('SESSION_LIFETIME', 120), COMENTAD
 
+    'lifetime' => 60,
     'expire_on_close' => false,
 
     /*

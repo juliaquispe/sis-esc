@@ -1,6 +1,6 @@
 @extends("theme.$theme.layout")
 @section('titulo')
-    Crear_Editar
+    Editar_Rol
 @endsection
 @section('scripts')
 <script src="{{asset("assets/pages/scripts/rol/validar.js")}}" type="text/javascript"></script>

@@ -1,0 +1,100 @@
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.form{
+    width: 100%;
+    height: 50px;
+    max-width: 400px;
+    position: relative;
+    overflow: hidden;
+}
+.form input{
+    width: 100%;
+    height: 100%;
+    background: none;
+    color: rgb(12, 97, 158);
+    padding-top: 10px;
+    border: none;
+    outline: 0px;
+}
+.form .lbl-usuario{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    pointer-events: none;
+    border-bottom: 1px solid  rgb(36, 81, 139);
+}
+.form .lbl-usuario:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 100%;
+    border-bottom: 3px solid rgb(14, 9, 83);
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+}
+.txt-usuario{
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    transition: all 0.5s ease;
+    color: rgb(36, 101, 139);
+    font-size: 16px;
+}
+.form input:focus + .lbl-usuario .txt-usuario,.form input:valid + .lbl-usuario .txt-usuario{
+    transform: translateY(-80%);
+    font-size: 13px;
+    color: rgb(14, 9, 83);
+}
+.form input:focus + .lbl-usuario:after{
+    transform: translateX(0%);
+}
+
+
+.form .lbl-password{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    pointer-events: none;
+    border-bottom: 1px solid  rgb(36, 81, 139);
+}
+.form .lbl-password:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 100%;
+    border-bottom: 3px solid rgb(14, 9, 83);
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+}
+.txt-password{
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    transition: all 0.3s ease;
+    color:  rgb(36, 81, 139);
+    font-size: 16px;
+}
+.form input:focus + .lbl-password .txt-password,.form input:valid + .lbl-password .txt-password{
+    transform: translateY(-80%);
+    font-size: 13px;
+    color: rgb(14, 9, 83);
+}
+.form input:focus + .lbl-password:after{
+    transform: translateX(0%);
+}
+

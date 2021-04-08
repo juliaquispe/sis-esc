@@ -12,6 +12,9 @@ class LoginController extends Controller
     use AuthenticatesUsers;
     protected $redirectTo = '/admin';
 
+    public $maxAttempts = 2;//numero de intentos para fallar
+    public $decayMinutes = 1;//tiempo de espera 1min para volver a ingresar al login
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
