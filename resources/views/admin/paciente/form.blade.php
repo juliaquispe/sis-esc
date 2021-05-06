@@ -87,9 +87,9 @@
                     </div>
                 </div>
             </div>
-            <div class="profile-info-row">
+            {{-- <div class="profile-info-row">
                 <div class="">
-                    <label for="t_sangre" class="col-lg-3 control-label requerido">Tipo de Sangre</label>
+                    <label for="t_sangre" class="col-lg-3 control-label">Tipo de Sangre</label>
                     <div class="col-lg-8">
                         <select name="t_sangre" id="t_sangre" class="form-control">
                             <option value="">Seleccione su Opción</option>
@@ -104,7 +104,7 @@
                         </select>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div><br>
     </div>
 </div>

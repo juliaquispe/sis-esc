@@ -4,6 +4,7 @@
 @endsection
 @section('scripts')
 <script src="{{asset("assets/pages/scripts/alert/alert.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/datatables/datatables.js")}}" type="text/javascript"></script>
 @endsection
 @section('contenido')
 <div class="page-header">

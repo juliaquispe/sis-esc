@@ -136,7 +136,7 @@
                                     </button>
                                 </th>
                             </form>
-                            <form action="{{route('ordenar_paciente')}}" method="POST" name="form2">
+                            {{-- <form action="{{route('ordenar_paciente')}}" method="POST" name="form2">
                                 <th class="col-lg-1.5" style="text-align: center;">Grupo Sanguineo
                                     @csrf
                                     <input type="hidden" id="id" name="id" value=5>
@@ -150,7 +150,7 @@
                                         @endif
                                     </button>
                                 </th>
-                            </form>
+                            </form> --}}
                             <form action="{{route('ordenar_paciente')}}" method="POST" name="form2">
                                 <th class="col-lg-1.5" style="text-align: center;">Contacto
                                     @csrf
@@ -178,13 +178,13 @@
                             <td style="text-align: center;">
                                 {{$edad= MyHelper::Edad_Paciente($pac->fecha_nac,"index")}}
                             </td>
-                            <td style="text-align: center;">
+                            {{-- <td style="text-align: center;">
                                 @if ($pac->t_sangre==null)
                                     <span class="red">{{"No Registrado"}}</span>
                                 @else
                                     {{$pac->t_sangre}}
                                 @endif
-                            </td>
+                            </td> --}}
                             <td style="text-align: center;">
                                 @if ($pac->celular==null)
                                     <span class="red">{{"No Registrado"}}</span>

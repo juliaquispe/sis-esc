@@ -29,11 +29,6 @@ class UnidadController extends Controller
         return redirect ('admin/unidad')->with('mensaje', 'unidad creado satisfactoriamente');
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function edit($id)
     {
         //return view('admin.unidad.editar');

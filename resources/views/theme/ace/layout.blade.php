@@ -45,11 +45,10 @@
 						<small>
                             <i>
                                 @if ($clinica->logo==null)
-                                <img class="img-circle zoom" src="{{asset("assets/$theme/assets/images/avatars/dos.jpg")}}" width="6%"/>
+                                    <img class="img-circle zoom" src="{{asset("assets/$theme/assets/images/avatars/logo.jpg")}}" width="6%"/>
                                 @else
-                                <img class="img-circle zoom" src="{{Storage::url("Datos/Clinica/$clinica->logo")}}" width="6%"/>
+                                    <img class="img-circle zoom" src="{{Storage::url("Datos/Clinica/$clinica->logo")}}" width="6%"/>
                                 @endif
-
                             </i>&nbsp;&nbsp;
 							{{$clinica->nombre}}
 						</small>

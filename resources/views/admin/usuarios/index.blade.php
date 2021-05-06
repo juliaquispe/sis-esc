@@ -3,7 +3,6 @@
     Usuarios
 @endsection
 @section('scripts')
-<script src="{{asset("assets/pages/scripts/alert/alert.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/usuario/index.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/usuario/estado.js")}}" type="text/javascript"></script>
 @endsection
@@ -58,7 +57,7 @@
                                         </a>
                                     @endif
                                 </div>&nbsp;&nbsp;
-                                <div class="hidden-sm hidden-xs btn-group">
+                                {{-- <div class="hidden-sm hidden-xs btn-group">
                                     @if(Auth::user()->rol->eliminar ==1)
                                         <form action="{{route('eliminar_usuario', ['id' => $usuarios->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
                                             @csrf @method("delete")
@@ -67,17 +66,17 @@
                                             </button>
                                         </form>
                                     @endif
-                                </div>&nbsp;&nbsp;
-                                {{-- <div class="hidden-sm hidden-xs btn-group">
-                                    @if(Auth::user()->rol->editar ==1)
+                                </div>&nbsp;&nbsp; --}}
+                                <div class="hidden-sm hidden-xs btn-group">
+                                    @if(Auth::user()->rol->eliminar ==1)
                                         <form action="{{route('inactivar_usuario', ['id' => $usuarios->id])}}" class="d-inline form-estado" method="POST" id="form-estado">
                                             @csrf @method("put")
-                                            <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Inactivar Ususario">
+                                            <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Dar de baja el ususario">
                                                 <i class="ace-icon fa fa-ban"></i>
                                             </button>
                                         </form>
                                     @endif
-                                </div> --}}
+                                </div>
                             </td>
                         </tr>
                     @endforeach

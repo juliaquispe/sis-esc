@@ -18,7 +18,7 @@ class CreatePacienteTable extends Migration
             $table->string('celular',12)->nullable();
             $table->date('fecha_nac');
             $table->string('genero',6);
-            $table->string('t_sangre',12)->nullable();
+            //$table->string('t_sangre',12)->nullable();
             $table->string('foto',20)->nullable();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';

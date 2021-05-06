@@ -1,5 +1,3 @@
-<div class="row">
-    <div class="col-xs-5">
         <div class="col-sm-12" id="default-buttons">
             <button class="boton_cancelar" type="reset">Cancelar</button>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -39,5 +37,3 @@
                 }
             </style>
         </div>
-    </div>
-</div>

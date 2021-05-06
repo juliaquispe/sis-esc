@@ -16,12 +16,15 @@ class CreatePersonalTable extends Migration
             $table->string('direccion',60)->nullable();
             $table->string('celular',12)->nullable()->unique();
             $table->date('fecha_ing');
+            $table->bigInteger('cargo_id')->unsigned();
+            $table->foreign('cargo_id')->references('id')->on('cargo')->onDelete('restrict');
             $table->bigInteger('unidad_id')->unsigned();
             $table->foreign('unidad_id')->references('id')->on('unidad')->onDelete('restrict');
             $table->string('foto',30)->nullable();
             $table->string('genero',6);
             $table->string('curriculum',30)->nullable();
-            $table->bigInteger('estado')->nullable()->default(1);
+            $table->enum('estado', ['1' , '0'])->default('1');
+            $table->string('sistema', 2)->nullable();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
             $table->timestamps();

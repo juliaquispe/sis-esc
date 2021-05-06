@@ -21,36 +21,52 @@
             -<i class="ace-icon fa fa-angle-double-right"></i>
             Editar Usuario
         </small>
-        <div class="box-tools pull-right">
-            <a href="{{route('usuario')}}" class="btn btn-block btn-info btn-sm">{{-- boton para ir a otra tabla --}}
-                <style type="text/css">
-                    .btn{
-                    padding: 5px;
-                    font-weight: 500;
-                    font-size: 15px;
-                    border-radius: 10px;
-                    }
-                </style>
-                <i class="fa fa-fw fa-reply-all"></i>Ver Lista Usuarios
-            </a>
-        </div>
+        @if ($mi_usuario==null)
+            <div class="box-tools pull-right">
+                <a href="{{route('usuario')}}" class="btn btn-block btn-info btn-sm">{{-- boton para ir a otra tabla --}}
+                    <style type="text/css">
+                        .btn{
+                        padding: 5px;
+                        font-weight: 500;
+                        font-size: 15px;
+                        border-radius: 10px;
+                        }
+                    </style>
+                    <i class="fa fa-fw fa-reply-all"></i>Ver Lista Usuarios
+                </a>
+            </div>
+        @endif
+
     </h1>
 </div>
 @include('mensajes.incorrecto')
 <div class="row">
     <div class="col-xs-12">
         @include('mensajes.error')
-        <form class="form-horizontal" role="form" id="form-general"  action="{{route ('actualizar_usuario', ['id' => $usuario->id])}}"  method="POST" enctype="multipart/form-data">
-            @csrf @method('put')
-                @include('admin/usuarios/form')
-                <br><br>
-                <div class="box-footer">
-                    <div class="col-lg-4" ></div>
-                    <div class="col-lg-8">
-                        @include('botones/actualizar')
+        @if ($mi_usuario==null)
+            <form class="form-horizontal" role="form" id="form-general"  action="{{route ('actualizar_usuario', ['id' => $usuario->id])}}"  method="POST" enctype="multipart/form-data">
+                @csrf @method('put')
+                    @include('admin/usuarios/form_usuario')
+                    <div class="box-footer">
+                        <div class="col-lg-4" ></div>
+                        <div class="col-lg-8">
+                            @include('botones/actualizar')
+                        </div>
                     </div>
-                </div>
-        </form>
+            </form>
+        @else
+            <form class="form-horizontal" role="form" id="form-general"  action="{{route ('actualizar_mi_usuario', ['id' => $usuario->id])}}"  method="POST" enctype="multipart/form-data">
+                @csrf @method('put')
+                    @include('admin/usuarios/form_mi_usuario')
+                    <br><br>
+                    <div class="box-footer">
+                        <div class="col-lg-4" ></div>
+                        <div class="col-lg-8">
+                            @include('botones/actualizar')
+                        </div>
+                    </div>
+            </form>
+        @endif
     </div>
 </div>
 @endsection

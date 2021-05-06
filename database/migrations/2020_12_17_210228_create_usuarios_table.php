@@ -23,7 +23,8 @@ class CreateUsuariosTable extends Migration
             $table->string('email', 50)->unique();
             $table->string('password', 100);
             $table->string('foto',15)->nullable();
-            $table->enum('estado', ['1' , '0'])->default('1');
+            $table->enum('estado', ['2', '1' , '0'])->default('1');
+            $table->bigInteger('personal_id')->nullable();
             $table->charset='utf8mb4';
             $table->collation='utf8mb4_spanish_ci';
             $table->timestamps();

@@ -4,7 +4,14 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacionPaciente;
+use App\Models\Admin\Clinica;
+use App\Models\Admin\Consulta;
+use App\Models\Admin\Ficha;
+use App\Models\Admin\Historial;
 use App\Models\Admin\Paciente;
+use App\Models\Admin\Receta;
+use App\Models\Admin\Signos_Vitales;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class PacienteController extends Controller
@@ -66,15 +73,59 @@ class PacienteController extends Controller
         return redirect('admin/paciente')->with('mensaje', 'Datos actualizados con exito');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if ($request->ajax()) {
+            try {
+                //Eliminar registro
+                Paciente::destroy($id);
+                $aux=1; //CUANDO ELIMINA
+            } catch (\Illuminate\Database\QueryException $e) {
+                $aux=0; //CUANDO TIENE DEPENDENCIAS
+            }
+            if($aux==1){
+                return response()->json(['mensaje' => 'ok']);
+            } else {
+                return response()->json(['mensaje' => 'ng']);
+            }
+        } else {
+             abort(404);
+        }
     }
 
     public function ver($id)
     {
         $paciente = Paciente::findOrfail($id);
-        return view('admin.paciente.ver', compact('paciente'));
+        $signos_vitales= Signos_Vitales :: where('paciente_id', $paciente->id)->get();
+        $SVM=$signos_vitales->max();
+        $fichas= Ficha::where([
+            ['paciente_id', $paciente->id],
+            ['estado', 1]
+        ])->get();
+        $datos=array();
+        $consultas=array();
+        $i=0;
+        foreach($fichas as $ficha){
+            $consultas[$i]= Consulta::where('ficha_id', $ficha->id)->get();
+            $datos[$i]["fecha"]=$ficha->fecha;
+            $datos[$i]["ficha_id"]=$ficha->id;
+            $i++;
+        }
+        $j=0;
+        foreach($consultas as $consulta){
+            $datos[$j]["motivo"]=$consulta[0]["motivo"];
+            $datos[$j]["diagnostico"]=$consulta[0]["diagnostico"];
+            $datos[$j]["consulta_id"]=$consulta[0]["id"];
+            $aux1=Receta::where('consulta_id', $consulta[0]["id"])->get();
+            if($aux1->count()>0){
+                $datos[$j]["receta_id"]=$aux1[0]["id"];
+            }
+            else{
+                $datos[$j]["receta_id"]='no';
+            }
+            $j++;
+        }
+        return view('admin.paciente.ver', compact('paciente', 'SVM','datos'));
     }
 
     public function ordenar(Request $request)
@@ -128,5 +179,82 @@ class PacienteController extends Controller
             $seleccion=$request->selec;
             return view('admin.paciente.index', compact('datos', 'aux', 'search', 'seleccion'));
         }
+    }
+
+    public function consulta_paciente($id)// la id de la consulta
+    {
+        $consulta=Consulta::findOrFail($id);
+        $ficha=Ficha::findOrFail($consulta->ficha_id);
+        $clinica = Clinica ::findOrFail(1);
+        $signos_vitales=Signos_vitales::findOrFail($consulta->id);
+        $aux1=Receta::where('consulta_id', $consulta->id)->get();
+        if($aux1->count()==0){
+            $receta=null;
+        }else{
+            $receta=Receta::findOrFail($aux1[0]["id"]);
+        }
+        if($clinica->logo==null)
+            $image = base64_encode(file_get_contents(public_path("assets/ace/assets/images/avatars/logo.jpg")));
+        else
+            $image = base64_encode(file_get_contents(public_path("storage/Datos/Clinica/$clinica->logo")));
+        $pdf= PDF::loadview('admin.paciente.imprimir_consulta', compact('clinica', 'image', 'ficha', 'signos_vitales', 'consulta', 'receta'));
+        return $pdf->stream('ficha.pdf');
+    }
+
+    public function ver_expediente($id)
+    {
+        $clinica = Clinica ::findOrFail(1);
+        $paciente = Paciente::findOrfail($id);
+        $auxiliar=Historial::where('paciente_id',$paciente->id)->get();
+        if($auxiliar->count()==0){
+            $historial=null;
+        }else{
+            $historial=Historial::findOrFail($auxiliar[0]["id"]);
+        }
+        $fichas= Ficha::where([
+            ['paciente_id', $paciente->id],
+            ['estado', 1]
+        ])->get();
+        $datos=array();
+        $consultas=array();
+        $i=0;
+        foreach($fichas as $ficha){
+            $consultas[$i]= Consulta::where('ficha_id', $ficha->id)->get();
+            $datos[$i]["ficha_id"]=$ficha->id;
+            $datos[$i]["fecha"]=$ficha->fecha;
+            $datos[$i]["hora"]=$ficha->hora;
+            //$datos[$i]["servicio_id"]=$ficha->servicio_id;
+            $i++;
+        }
+        $j=0;
+        foreach($consultas as $consulta){
+            $datos[$j]["consulta_id"]=$consulta[0]["id"];
+            $datos[$j]["motivo"]=$consulta[0]["motivo"];
+            $datos[$j]["sintoma"]=$consulta[0]["sintoma"];
+            $datos[$j]["diagnostico"]=$consulta[0]["diagnostico"];
+            $signos=Signos_Vitales::findOrFail($consulta[0]["id"]);
+            $datos[$j]["altura"]=$signos->altura;
+            $datos[$j]["peso"]=$signos->peso;
+            $datos[$j]["temperatura"]=$signos->temperatura;
+            $datos[$j]["p_a"]=$signos->p_a;
+            $datos[$j]["f_c"]=$signos->f_c;
+            $datos[$j]["f_r"]=$signos->f_r;
+            $aux1=Receta::where('consulta_id', $consulta[0]["id"])->get();
+            if($aux1->count()>0){
+                $datos[$j]["receta_id"]=$aux1[0]["id"];
+                $datos[$j]["receta"]=$aux1[0]["receta"];
+                $datos[$j]["indicacion"]=$aux1[0]["indicacion"];
+            }
+            else{
+                $datos[$j]["receta_id"]='no';
+            }
+            $j++;
+        }
+        if($clinica->logo==null)
+            $image = base64_encode(file_get_contents(public_path("assets/ace/assets/images/avatars/logo.jpg")));
+        else
+            $image = base64_encode(file_get_contents(public_path("storage/Datos/Clinica/$clinica->logo")));
+        $pdf= PDF::loadview('admin.paciente.ver_expediente', compact('clinica', 'image', 'historial', 'paciente', 'datos'));
+        return $pdf->stream('ficha.pdf');
     }
 }

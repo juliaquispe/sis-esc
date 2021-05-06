@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidacionUsuario;
+use App\Models\Admin\Personal;
 use App\Models\Admin\Rol;
 use App\Models\Admin\Usuario;
 use Illuminate\Http\Request;
@@ -20,8 +21,8 @@ class UsuarioController extends Controller
 
     public function create()
     {
-        $rols = Rol ::orderBy('id')->pluck('rol', 'id')->toArray();
-        return view('admin.usuarios.crear', compact('rols'));
+        $roles = Rol ::orderBy('id')->pluck('rol', 'id')->toArray();
+        return view('admin.usuarios.crear', compact('roles'));
     }
 
     public function store(ValidacionUsuario $request)
@@ -41,9 +42,10 @@ class UsuarioController extends Controller
     }
     public function edit($id)
     {
+        $mi_usuario=null;
         $rols = Rol ::orderBy('id')->pluck('rol', 'id')->toArray();
         $usuario = Usuario ::findOrfail($id);
-        return view('admin.usuarios.editar', compact('usuario','rols'));
+        return view('admin.usuarios.editar', compact('usuario','rols', 'mi_usuario'));
     }
 
     public function update(ValidacionUsuario $request, $id)
@@ -115,4 +117,45 @@ class UsuarioController extends Controller
         }
     }
 
+    public function edit_usuario($id) //PARA QUE EDITE DE CADA USUARIO EN HEDER
+    {
+        if($id==session()->get('usuario_id')){
+            $mi_usuario='heder';
+            $usuario = Usuario ::findOrfail($id);
+            return view('admin.usuarios.editar', compact('usuario', 'mi_usuario'));
+        }
+        else{
+            return back()->with('mensajeerror', 'Usted no puede editar otros usuarios');
+        }
+    }
+
+    public function update_usuario(ValidacionUsuario $request, $id) //PARA QUE EDITE DE CADA USUARIO HEDER
+    {
+        $usuario=Usuario::findOrFail($id);
+        if ($foto = Usuario::setFoto($request->foto_up, $usuario->foto))
+            $request->request->add(['foto' => $foto]);
+        $usuario->update(array_filter($request->all()));
+        $rol=$usuario->rol()->get();
+        $usuario->setSession($rol);
+        return redirect('admin')->with('mensaje', 'Usuario actualizado con exito');
+    }
+
+    public function aceptar($id)
+    {
+        $usuario= Usuario:: findOrFail($id);
+        $usuario->update([
+            'estado'=>1
+        ]);
+        return redirect('admin/usuario')->with('mensaje', 'Usuario Agregado al Sistema');
+
+    }
+
+        public function rechazar($id)
+    {
+        $usuario= Usuario:: findOrFail($id);
+        Usuario::destroy($id);
+        $personal= Personal::findOrFail($usuario->personal_id);
+        $personal->update(['sistema'=>'no']);
+        return back()->with('mensajeerror', 'Usuario Denegado al Sistema');
+    }
 }

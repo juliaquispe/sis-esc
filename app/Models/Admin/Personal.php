@@ -10,11 +10,15 @@ use Intervention\Image\Facades\Image;
 class Personal extends Model
 {
     protected $table = "personal";
-    protected $fillable=['nombre','apellido','ci','direccion','celular','fecha_ing','unidad_id','foto','genero','curriculum','estado'];
+    protected $fillable=['nombre','apellido','ci','direccion','celular','fecha_ing','cargo_id', 'unidad_id','foto','genero','curriculum','estado', 'sistema'];
 
     public function unidad()
     {
         return $this->belongsTo(Unidad::class); //muchos personales pertenecen a una unidad
+    }
+    public function cargo()
+    {
+        return $this->belongsTo(Cargo::class); //UN personal pertenece a una unidad
     }
     public static function setFoto($foto, $actual = false) //foto (al crear), actual (al editar)
     {

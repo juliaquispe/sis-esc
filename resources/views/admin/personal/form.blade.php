@@ -35,6 +35,19 @@
         </div>
     </div>
     <div class="form-group">
+        <label for="cargo_id" class="col-lg-3 control-label requerido">Cargo al que Pertenece</label>
+        <div class="col-lg-6">
+            <select name="cargo_id" id="cargo_id" class="form-control" required >
+                <option value="">Seleccione el Cargo</option>
+                @foreach($cargo as $id => $nombre)
+                    <option
+                    value="{{$id}}"{{old("cargo_id",$personal->cargo->id ?? "")==$id ? "selected":""}}>{{$nombre}}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
         <label for="unidad_id" class="col-lg-3 control-label requerido">Unidad la que Pertenece</label>
         <div class="col-lg-6">
             <select name="unidad_id" id="unidad_id" class="form-control" required >
@@ -57,19 +70,72 @@
             <label for="mujer">Mujer</label>
         </div>
     </div>
+    <div class="form-group" style="width:100%; height: 40px;">
+        <label class="control-label col-xs-12 col-sm-3">¿Acceso al sistema?</label>
+        <div class="controls col-xs-12 col-sm-9">
+            <div class="col-xs-2">
+                <label>
+                    <input name="añadir" id="añadir" class="ace ace-switch ace-switch-6" type="checkbox" value="1" onchange="javascript:showContent()">
+                    <span class="lbl"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    @if ($personal==null)
+        <div class="form-group" id="content" style="display: none;">
+            <label for="rol_id" class="col-lg-3 control-label requerido">Rol</label>
+            <div class="col-lg-6">
+                <select name="rol_id" id="rol_id" class="form-control">
+                    <option value="">Seleccione el Rol</option>
+                    @foreach($roles as $id => $rol)
+                        <option
+                        value="{{$id}}"{{old("rol_id",$usuario->rol->id ?? "")==$id ? "selected":""}}>{{$rol}}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    @else
+        @if ($personal->sistema=='si')
+            <div class="form-group" id="content" style="display: none;">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6">
+                    <div class="alert alert-info">
+                        <strong>Atención! </strong> este personal ya cuenta con un Usuario
+                        <br />
+                    </div>
+                </div>
+            </div>
+        @else
+            <div class="form-group" id="content" style="display: none;">
+                <label for="rol_id" class="col-lg-3 control-label requerido">Rol</label>
+                <div class="col-lg-6">
+                    <select name="rol_id" id="rol_id" class="form-control">
+                        <option value="">Seleccione el Rol</option>
+                        @foreach($roles as $id => $rol)
+                            <option
+                            value="{{$id}}"{{old("rol_id",$usuario->rol->id ?? "")==$id ? "selected":""}}>{{$rol}}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        @endif
+    @endif
+
 <div class="col-lg-12"> <br>
-        <div class="col-lg-6">
-            <label for="foto" class="col-lg-2 control-label center">Foto</label>
-            <div class="col-lg-9">
-                <input type="file" name="foto_up" id="foto" data-initial-preview="{{isset($personal->foto) ? Storage::url("Datos/Personal/Fotos/$personal->foto") : "http://www.placehold.it/250x250/EFEFEF/AAAAAA&text=foto+personal"}}" accept="image/*"/>
-            </div>
+    <div class="col-lg-6">
+        <label for="foto" class="col-lg-2 control-label center">Foto</label>
+        <div class="col-lg-9">
+            <input type="file" name="foto_up" id="foto" data-initial-preview="{{isset($personal->foto) ? Storage::url("Datos/Personal/Fotos/$personal->foto") : "http://www.placehold.it/250x250/EFEFEF/AAAAAA&text=foto+personal"}}" accept="image/*"/>
         </div>
-        <div class="col-lg-6">
-            <label for="documento" class="col-lg-3 control-label center">Curriculum</label>
-            <div class="col-lg-9">
-                <input type="file" name="documento_up" id="documento" data-initial-preview="{{isset($personal->curriculum) ? Storage::url("Datos/Personal/Documentos/$personal->curriculum") : "http://www.placehold.it/250x250/EFEFEF/AAAAAA&text=documento+personal"}}" accept=".pdf"/>
-            </div>
+    </div>
+    <div class="col-lg-6">
+        <label for="documento" class="col-lg-3 control-label center">Curriculum</label>
+        <div class="col-lg-9">
+            <input type="file" name="documento_up" id="documento" data-initial-preview="{{isset($personal->curriculum) ? Storage::url("Datos/Personal/Documentos/$personal->curriculum") : "http://www.placehold.it/250x250/EFEFEF/AAAAAA&text=documento+personal"}}" accept=".pdf"/>
         </div>
+    </div>
 </div>
 <div style="clear:both"></div>
 <script>
@@ -83,8 +149,7 @@
         }
         nombre.value = mayuscula.concat(minuscula);    //escribimos la palabra con la primera letra mayuscula
     }
-</script>
-<script>
+
     var apellido = document.getElementById('apellido');  //instanciamos el elemento input
         function ApeMayus() {            //función que capitaliza la primera letra
         var palabra = apellido.value;                    //almacenamos el valor del input
@@ -95,8 +160,7 @@
         }
         apellido.value = mayuscula.concat(minuscula);    //escribimos la palabra con la primera letra mayuscula
     }
-</script>
-<script>
+
     var direccion = document.getElementById('direccion');  //instanciamos el elemento input
         function DirecMayus() {            //función que capitaliza la primera letra
         var palabra = direccion.value;                    //almacenamos el valor del input
@@ -107,16 +171,17 @@
         }
         direccion.value = mayuscula.concat(minuscula);    //escribimos la palabra con la primera letra mayuscula
     }
-</script>
-<script>
-    var genero = document.getElementById('genero');  //instanciamos el elemento input
-        function GeneroMayus() {            //función que capitaliza la primera letra
-        var palabra = genero.value;                    //almacenamos el valor del input
-        if(!genero.value) return;                      //Si el valor es nulo o undefined salimos
-        var mayuscula = palabra.substring(0,1).toUpperCase(); // almacenamos la mayuscula
-        if (palabra.length > 0) {                     //si la palabra tiene más de una letra almacenamos las minúsculas
-            var minuscula = palabra.substring(1).toLowerCase();
+
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("añadir");
+        if (check.checked) {
+            element.style.display='block';
+            $('#rol_id').prop('required', true);
         }
-        genero.value = mayuscula.concat(minuscula);    //escribimos la palabra con la primera letra mayuscula
+        else {
+            element.style.display='none';
+        }
     }
 </script>
+

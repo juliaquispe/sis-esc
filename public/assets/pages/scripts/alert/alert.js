@@ -24,13 +24,13 @@ $(document).ready(function () {
             success: function (respuesta) {
                 if (respuesta.mensaje == "ok") {
                     form.parents('tr').remove();
-                    SIS.notificaciones('El registro fue eliminado correctamente', 'SIS', 'success');
+                    SIS.notificaciones('El registro fue eliminado correctamente', 'Clínica Santa Teresa', 'success');
                 } else {
                     if (respuesta.mensaje == "ng") {
-                        SIS.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'SIS', 'error');
+                        SIS.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Clínica Santa Teresa', 'error');
                     }
                     else{
-                        SIS.notificaciones('El Rol Administrador no puede ser eliminado', 'SIS', 'warning');
+                        SIS.notificaciones('El Rol Administrador no puede ser eliminado', 'Clínica Santa Teresa', 'warning');
                     }
                 }
             },

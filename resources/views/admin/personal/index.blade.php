@@ -2,17 +2,17 @@
 @extends("theme.$theme.layout")
 
 @section('titulo')
-	Personales
+	Personal
 @endsection
 @section('scripts')
-<script src="{{asset("assets/pages/scripts/alert/alert.js")}}" type="text/javascript"></script>
-<script src="{{asset("assets/pages/scripts/datatables/datatables.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/personal/modal.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/datatables/datatables.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/personal/estado.js")}}" type="text/javascript"></script>
 @endsection
 @section('contenido')
     <div class="page-header">
         <h1>
-            Lista de Personales
+            Lista de Personal
             <div class="box-tools pull-right">
                 @if(Auth::user()->rol->añadir ==1)
                     <a href="{{route('crear_personal')}}" class="btn btn-block btn-success btn-sm">
@@ -33,7 +33,8 @@
                             <th class="col-lg-2" style="text-align: center;">Nombre</th>
                             <th class="col-lg-2" style="text-align: center;">Apellidos</th>
                             <th class="col-lg-3" style="text-align: center;">Unidad</th>
-                            <th class="col-lg-2" style="text-align: center;">Curriculum</th>
+                            <th class="col-lg-1.5" style="text-align: center;">Cargo</th>
+                            <th class="col-lg-1.5" style="text-align: center;">Curriculum</th>
                             <th class="col-lg-2" style="text-align: center;">Opción</th>
                         </tr>
                     </thead>
@@ -43,6 +44,7 @@
                             <td style="text-align: center;">{{$per->nombre}}</td>
                             <td style="text-align: center;">{{$per->apellido}}</td>
                             <td style="text-align: center;">{{$per->unidad->nombre}}</td>
+                            <td style="text-align: center;">{{$per->cargo->nombre}}</td>
                             <td style="text-align: center;">
                                 <div class="hidden-sm hidden-xs btn-group">
                                     @if($per->curriculum!=null)
@@ -71,10 +73,10 @@
                                 </div>&nbsp;&nbsp;&nbsp;
                                 <div class="hidden-sm hidden-xs btn-group">
                                     @if(Auth::user()->rol->eliminar ==1)
-                                        <form action="{{route('eliminar_personal', ['id' => $per->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
-                                            @csrf @method("delete")
-                                            <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Eliminar Personal">
-                                                <i class="fa fa-close"></i>
+                                        <form action="{{route('inactivar_personal', ['id' => $per->id])}}" class="d-inline form-estado" method="POST" id="form-estado">
+                                            @csrf @method("put")
+                                            <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Inactivar Personal">
+                                                <i class="ace-icon fa fa-ban"></i>
                                             </button>
                                         </form>
                                     @endif

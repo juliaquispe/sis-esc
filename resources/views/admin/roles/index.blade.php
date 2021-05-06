@@ -57,7 +57,7 @@
                                 @else
                                     <span class="badge badge-danger"><i class="ace-icon glyphicon glyphicon-remove"></i></span>
                                 @endif
-                                </td>
+                            </td>
                             <td style="text-align: center;">
                                 <div class="hidden-sm hidden-xs btn-group">
                                     @if(Auth::user()->rol->editar ==1)

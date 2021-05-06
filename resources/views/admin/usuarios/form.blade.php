@@ -24,13 +24,13 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="rol_id" class="col-lg-3 control-label requerido"> Rol</label>
+    <label for="rol_id" class="col-lg-3 control-label requerido">Rol</label>
     <div class="col-lg-6">
         <select name="rol_id" id="rol_id" class="form-control" required>
             <option value="">Seleccione el Rol</option>
-            @foreach($rols as $id => $rol)
+            @foreach($roles as $id => $rol)
                 <option
-                value="{{$id}}"{{old("rol_id",$usuario->rol->id ?? "")==$id ? "selected":""}}>{{$rol}}</option>
+                value="{{$id}}"{{old("rol_id",$usuario->rol->id ?? "")==$id ? "selected":""}}>{{$rol}}
                 </option>
             @endforeach
         </select>

@@ -20,9 +20,9 @@
                                         $clinica=MyHelper:: Datos_Clinica();
                                     @endphp
                                     @if ($clinica->logo==null)
-                                    <img class="nav-user-photo" style="border-radius: 800px" width="120" height="120" src="{{asset("assets/$theme/assets/images/avatars/dos.jpg")}}"/>
+                                        <img class="nav-user-photo" style="border-radius: 800px" width="120" height="120" class="zoom" src="{{asset("assets/$theme/assets/images/avatars/logo.jpg")}}"/>
                                     @else
-                                    <img class="nav-user-photo" style="border-radius: 800px" width="120" height="120" src="{{Storage::url("Datos/Clinica/$clinica->logo")}}"/>
+                                        <img class="nav-user-photo" style="border-radius: 800px" width="120" height="120" src="{{Storage::url("Datos/Clinica/$clinica->logo")}}"/>
                                     @endif
                                     <span style="color: rgb(238, 221, 233)"><b><u>CLÍNICA</u></b></span>
                                     <font style="color: rgb(74, 143, 199)" size="6" face="impact"><u>SANTA TERESA</u></font>

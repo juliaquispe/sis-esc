@@ -24,7 +24,7 @@
                 <div>
                     <span class="profile-picture">
                         @if ($datos->foto==null)
-                        <img src="{{asset("assets/$theme/assets/images/avatars/dos.jpg")}}" height="270px" width="350px"/>
+                        <img src="{{asset("assets/$theme/assets/images/avatars/foto.jpeg")}}" height="270px" width="350px"/>
                         @else
                         <img src="{{Storage::url("Datos/Clinica/$datos->foto")}}" height="270px" width="350px"/>
                         @endif
@@ -97,7 +97,7 @@
                         <div class="profile-info-row">
                             <div class="profile-info-name"><u>Logo</u>:</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 @if ($datos->logo==null)
-                                <img class="img-circle zoom" src="{{asset("assets/$theme/assets/images/avatars/dos.jpg")}}" width="10%"/>
+                                <img class="img-circle zoom" src="{{asset("assets/$theme/assets/images/avatars/logo.jpg")}}" width="10%"/>
                                 @else
                                 <img class="img-circle zoom" src="{{Storage::url("Datos/Clinica/$datos->logo")}}" width="10%"/>
                                 @endif

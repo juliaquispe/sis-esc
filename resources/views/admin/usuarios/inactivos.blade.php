@@ -32,7 +32,7 @@
                 <tbody>
                     @foreach ($datos as $usuarios)
                         <tr>
-                            <td style="text-align: center;">{{$usuarios->estado}}</td>
+                            <td style="text-align: center;">{{$usuarios->usuario}}</td>
                             <td style="text-align: center;">{{$usuarios->nombre}}</td>
                             <td style="text-align: center;">{{$usuarios->apellido}}</td>
                             <td style="text-align: center;">{{$usuarios->email}}</td>

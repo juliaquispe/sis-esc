@@ -24,7 +24,6 @@ class ValidacionPaciente extends FormRequest
                     'celular'=>'nullable|min:5|max:12',
                     'fecha_nac'=>'required|date|date_format:Y-m-d',
                     'genero'=>'required|max:6',
-                    't_sangre'=>'nullable|min:10|max:11',
                     'foto_up'=>'nullable|image|max:3000',
                 ];
             }
@@ -39,7 +38,6 @@ class ValidacionPaciente extends FormRequest
                     'celular'=>'nullable|min:5|max:12',
                     'fecha_nac'=>'required|date|date_format:Y-m-d',
                     'genero'=>'required|max:6',
-                    't_sangre'=>'nullable|min:10|max:11',
                     'foto_up'=>'nullable|image|max:3000',
                 ];
             }
@@ -66,8 +64,6 @@ class ValidacionPaciente extends FormRequest
             'celular.min' => 'El número de Celular debe tener al menos 5 digitos',
             'fecha_nac.required' => 'Olvidaste la fecha de ingreso',
             'genero.required' => 'Olvidaste el Genero',
-            't_sangre.min'=>'El tipo de sangre debe ser menor 11 digitos',
-            't_sangre.max'=>'El tipo de sangre debe ser mayor 10 digitos',
             'foto_up.image' => 'La Foto debe de estar en un formato .jpg .png .jpeg',
             'foto_up.max' => 'El tamaño máximo de la Foto es de 3 MB',
         ];

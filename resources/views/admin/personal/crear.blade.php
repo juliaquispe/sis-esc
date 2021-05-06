@@ -42,6 +42,9 @@
         @include('mensajes.error')
         <form class="form-horizontal" role="form" id="form-general"  action="{{route ('guardar_personal')}}"  method="POST" enctype="multipart/form-data">
             @csrf
+                @php
+                    $personal= null;
+                @endphp
                 @include('admin/personal/form')
                 <br><br>
                 <div class="box-footer">

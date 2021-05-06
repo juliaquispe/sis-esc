@@ -12,13 +12,11 @@ class CreateFichaTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('paciente_id')->unsigned();
             $table->foreign('paciente_id')->references('id')->on('paciente')->onDelete('restrict');
-            $table->bigInteger('unidad_id')->unsigned();
-            $table->foreign('unidad_id')->references('id')->on('unidad')->onDelete('restrict');
-            $table->string('color',20);
-            $table->string('textColor',20);
-            $table->dateTime('start');
-            $table->dateTime('end');
-            $table->string('estado',10);
+            $table->bigInteger('servicio_id')->unsigned();
+            $table->foreign('servicio_id')->references('id')->on('servicio')->onDelete('restrict');
+            $table->date('fecha');
+            $table->Time('hora');
+            $table->enum('estado', ['0' , '1'])->default('0');
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
             $table->timestamps();

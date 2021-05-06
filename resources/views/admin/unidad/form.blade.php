@@ -2,7 +2,7 @@
 <div class="form-group">
     <label class="col-sm-3 control-label no-padding-right requerido" for="form-field-1"> Nombre </label>
     <div class="col-sm-6">
-        <input type="text" class="form-control" placeholder="Ingrese nombre de la Unidad"  id="nombre" name="nombre" value="{{old('nombre', $unidad->nombre ?? '')}}" required onkeyup="NombreMayus()"/>
+        <input type="text" class="form-control" placeholder="Ingrese nombre de la Unidad" minlength="4"  id="nombre" name="nombre" value="{{old('nombre', $unidad->nombre ?? '')}}" required onkeyup="NombreMayus()"/>
     </div>
 </div>
 <div class="form-group">

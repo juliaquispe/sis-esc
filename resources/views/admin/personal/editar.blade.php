@@ -40,7 +40,7 @@
 <div class="row">
     <div class="col-xs-12">
         @include('mensajes.error')
-        <form class="form-horizontal" role="form" id="form-general"  action="{{route ('actualizar_personal', ['id' => $personal->id])}}"  method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal" role="form" id="form-general" action="{{route ('actualizar_personal', ['id' => $personal->id])}}"  method="POST" enctype="multipart/form-data">
             @csrf @method('put')
                 @include('admin/personal/form')
                 <br><br>

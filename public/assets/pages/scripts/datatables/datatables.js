@@ -32,7 +32,7 @@ $(document).ready( function () {
                 "colvis": "Visibilidad"
             }
         },
-        "lengthMenu":				[[3,15, 30, 50, 100, -1], [3, 15, 30, 50, 100, "Todos"]],
-		"iDisplayLength":			3,
+        "lengthMenu":				[[15, 30, 50, 100, -1], [5, 15, 30, 50, 100, "Todos"]],
+		"iDisplayLength":			15,
     });
 } );

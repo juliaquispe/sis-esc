@@ -16,14 +16,14 @@ class Usuario extends Authenticatable
 {
     protected $remember_token =false;
     Protected $table = "usuarios";
-    protected $fillable = ['rol_id','usuario','nombre','apellido', 'email', 'password', 'foto', 'estado'];
+    protected $fillable = ['rol_id','usuario','nombre','apellido', 'email', 'password', 'foto', 'estado', 'personal_id'];
     public function rol ()
     {
         return $this->belongsTo(Rol::class); //se relaciona con el modelo Rol mediate la tabla usuario_rol
     }
     public function setPasswordAttribute($pass)//funcion de laravel para encriptar el password
     {
-        $this->attributes['password']= Hash::make($pass);
+        $this->attributes['password']= Hash::make($pass);//EL HASH ENCRIPTA LA CONTRASEÑA
     }
 
     public static function setFoto($foto, $actual = false) //fotoo(al crear) y actual (al editar)

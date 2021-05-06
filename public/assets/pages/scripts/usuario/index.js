@@ -35,9 +35,9 @@ $(document).ready(function () {
                 if (funcion == 'eliminarUsuario') {
                     if (respuesta.mensaje == "ok") {
                         form.parents('tr').remove();
-                        SIS.notificaciones('El registro fue eliminado correctamente', 'SIS', 'success');
+                        SIS.notificaciones('El registro fue eliminado correctamente', 'Clínica Santa Teresa', 'success');
                     } else {
-                        SIS.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'SIS', 'error');
+                        SIS.notificaciones('El registro no pudo ser eliminado, hay recursos usandolo', 'Clínica Santa Teresa', 'error');
                     }
                 } else if (funcion == 'verUsuario') {
                     $('#modal-ver-usuario .modal-body').html(respuesta)

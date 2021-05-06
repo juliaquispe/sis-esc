@@ -36,9 +36,17 @@ class LoginController extends Controller
         if ($user->estado==1) {
             $user->setSession($rol->toArray());//llama a la funcion setsession
         } else {
-            $this->guard()->logout();
-            $request->session()->invalidate();
-            return redirect('seguridad/login')->withErrors(['error' => 'Este usuario no esta activo']);
+            if ($user->estado==2){
+                $this->guard()->logout();
+                $request->session()->invalidate();
+                return redirect('seguridad/login')->withErrors(['error' => 'Su cuenta aún no ha sido aprobado por el Administrador']);
+            }
+            else{
+                $this->guard()->logout();
+                $request->session()->invalidate();
+                return redirect('seguridad/login')->withErrors(['error' => 'Este usuario a sido dado de baja']);
+            }
+
         }
     }
 }
