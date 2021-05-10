@@ -15,6 +15,7 @@ class CreateConsultaTable extends Migration
             $table->text('motivo');
             $table->text('sintoma')->nullable();
             $table->text('diagnostico');
+            $table->string('doctor',60);
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
             $table->timestamps();

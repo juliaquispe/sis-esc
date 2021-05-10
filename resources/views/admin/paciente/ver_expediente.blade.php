@@ -605,7 +605,7 @@
                         @else
                             {{$dato["f_r"]}} r/min
                         @endif
-                        {{$dato["f_r"]}}</td>
+                    </td>
                 </tr>
             </table><br>
             <table width="100%" border="1">
@@ -642,7 +642,7 @@
                             @endfor <br>
                         @endif
 
-                </td>
+                    </td>
                 </tr>
                 <tr style="background:rgb(179, 217, 231)">
                     <td style="text-align: center"><b>Diagnóstico</b>
@@ -660,49 +660,161 @@
                     </td>
                 </tr>
             </table>
-            @if ($dato["receta_id"]!='no')
-                <h3 style="text-align: center"><FONT COLOR='#0f0fa0'><u>RECETA MÉDICA</u></FONT></h3>
-                <table  width="100%" border="1">
-                    <tr style="background:rgb(192, 221, 255)">
-                        <th>
-                            <span>MEDICAMENTOS</span>
-                        </th>
-                    </tr>
-                    <tr>
-                        @php
-                            $vector = explode("\n", $dato["receta"]);
-                            $contador=count($vector);
-                        @endphp
-                        <td>
-                            @for ($i=0;$contador>$i;$i++)
-                                {{$vector[$i]}}<br>
-                            @endfor
-                        </td>
-                    </tr>
-                </table>
+            @if ($dato["receta_id"]=="no" && $dato["gabinete_id"]=="no")
+            <br><br><br><br>
+            <table  width="100%" align="center">
+                <tr>
+                    <th>
+                        {{$dato["doctor"]}}
+                    </th>
+                </tr>
+            </table>
+            @else
+                @if ($dato["receta_id"]=="no")
+                    <h2 style="text-align: center"><FONT COLOR='#0f0fa0'><u>Estudio de Gabinete</u></FONT></h2>
+                    <table width="100%" border="1">
+                        <tr style="background:rgb(179, 217, 231)">
+                            <td style="text-align: center"><b>Tipo de Estudio</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            @php
+                                $vector = explode("\n", $dato["estudio_g"]);
+                                $contador=count($vector);
+                            @endphp
+                            <td>
+                                @for ($i=0;$contador>$i;$i++)
+                                    -{{$vector[$i]}} <br>
+                                @endfor <br>
+                            </td>
+                        </tr>
+                        <tr style="background:rgb(179, 217, 231)">
+                            <td style="text-align: center"><b>Indicación</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            @php
+                                $vector = explode("\n", $dato["indicacion_g"]);
+                                $contador=count($vector);
+                            @endphp
+                            <td>
+                                @if ($dato["indicacion_g"]==null)
+                                    {{$dato["indicacion_g"]}} <br>
+                                @else
+                                    @for ($i=0;$contador>$i;$i++)
+                                        -{{$vector[$i]}}<br>
+                                    @endfor <br>
+                                @endif
 
-                <table  width="100%" border="1">
-                    <tr style="background:rgb(192, 221, 255)">
-                        <th>
-                            Instrucciones Médicas
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>{{$dato["indicacion"]}}</td>
-                    </tr>
-                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <br><br><br><br>
+                    <table  width="100%" align="center">
+                        <tr>
+                            <th>
+                                {{$dato["doctor"]}}
+                            </th>
+                        </tr>
+                    </table>
+                @else
+                    <h3 style="text-align: center"><FONT COLOR='#0f0fa0'><u>RECETA MÉDICA</u></FONT></h3>
+                    <table  width="100%" border="1">
+                        <tr style="background:rgb(192, 221, 255)">
+                            <th>
+                                <span>MEDICAMENTOS</span>
+                            </th>
+                        </tr>
+                        <tr>
+                            @php
+                                $vector = explode("\n", $dato["receta"]);
+                                $contador=count($vector);
+                            @endphp
+                            <td>
+                                @for($i=0;$contador>$i;$i++)
+                                    {{$vector[$i]}} <br>
+                                @endfor
+                                <br>
+                            </td>
+                        </tr>
+                    </table>
+                    <table  width="100%" border="1">
+                        <tr style="background:rgb(192, 221, 255)">
+                            <th>
+                                Instrucciones Médicas
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{$dato["indicacion"]}} <br><br>
+                            </td>
+                        </tr>
+                    </table>
+                @if ($dato["gabinete_id"]=="no")
+                    <br><br><br><br>
+                    <table  width="100%" align="center">
+                        <tr>
+                            <th>
+                                {{$dato["doctor"]}}
+                            </th>
+                        </tr>
+                    </table>
+                @else
+                    <div style="page-break-after:always;"></div>
+                    <h2 style="text-align: center"><FONT COLOR='#0f0fa0'><u>Estudio de Gabinete</u></FONT></h2>
+                        <table width="100%" border="1">
+                            <tr style="background:rgb(179, 217, 231)">
+                                <td style="text-align: center"><b>Tipo de Estudio</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                @php
+                                    $vector = explode("\n", $dato["estudio_g"]);
+                                    $contador=count($vector);
+                                @endphp
+                                <td>
+                                    @for ($i=0;$contador>$i;$i++)
+                                        -{{$vector[$i]}} <br>
+                                    @endfor <br>
+                                </td>
+                            </tr>
+                            <tr style="background:rgb(179, 217, 231)">
+                                <td style="text-align: center"><b>Indicación</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                @php
+                                    $vector = explode("\n", $dato["indicacion_g"]);
+                                    $contador=count($vector);
+                                @endphp
+                                <td>
+                                    @if ($dato["indicacion_g"]==null)
+                                        {{$dato["indicacion_g"]}} <br>
+                                    @else
+                                        @for ($i=0;$contador>$i;$i++)
+                                            -{{$vector[$i]}}<br>
+                                        @endfor <br>
+                                    @endif
+
+                                </td>
+                            </tr>
+                        </table>
+                        <br><br><br><br>
+                        <table  width="100%" align="center">
+                            <tr>
+                                <th>
+                                    {{$dato["doctor"]}}
+                                </th>
+                            </tr>
+                        </table>
+                @endif
             @endif
-                <br><br><br><br>
-                <table  width="100%" align="center">
-                    <tr>
-                        <th>
-                            Dr. Benigno Gutierrez Vargas
-                        </th>
-                    </tr>
-                </table><br><br>
+        @endif
             @php
                 $i++;
             @endphp
+
         @endforeach
     </body>
 </html>
+

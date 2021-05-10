@@ -6,24 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateGabineteTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('gabinete', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('consulta_id')->unsigned();
+            $table->foreign('consulta_id')->references('id')->on('consulta')->onDelete('restrict');
+            $table->text('estudio_g')->nullable();
+            $table->text('indicacion_g')->nullable();
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('gabinete');

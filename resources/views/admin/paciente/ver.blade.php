@@ -236,11 +236,11 @@
                                         @endif
                                     </td>
                                     <td style="text-align: center;">
-                                        {{-- @if($estudios_gabinete!=null)
+                                        @if($consulta["gabinete_id"]!="no")
                                             <span class="badge badge-success"><i class="ace-icon glyphicon glyphicon-ok"></i></span>
                                         @else
                                             <span class="badge badge-danger"><i class="ace-icon glyphicon glyphicon-remove"></i></span>
-                                        @endif --}}
+                                        @endif
                                     </td>
                                     <td style="text-align: center;">
                                         <form action="{{route('consulta_paciente', ['id' =>$consulta["consulta_id"]])}}" target="{{$consulta["consulta_id"]}}" class="d-inline">

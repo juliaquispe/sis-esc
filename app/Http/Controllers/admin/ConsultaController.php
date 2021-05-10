@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Clinica;
 use App\Models\Admin\Consulta;
 use App\Models\Admin\Ficha;
+use App\Models\Admin\Gabinete;
 use App\Models\Admin\Historial;
 use App\Models\Admin\Paciente;
+use App\Models\Admin\Personal;
 use App\Models\Admin\Receta;
 use App\Models\Admin\Servicio;
 use App\Models\Admin\Signos_vitales;
@@ -58,11 +60,21 @@ class ConsultaController extends Controller
         //dd($aux->count());
         $signos= Signos_Vitales :: where('paciente_id', $paciente->id)->get();
         $SVM=$signos->max();
+        if(session()->get('usuario_personal_id')==null){
+            $doctor="Dr. ".session()->get('nombre_usuario')." ".session()->get('apellido_usuario');
+        }else{
+            $persona=Personal::findOrFail(session()->get('usuario_personal_id'));
+            if ($persona->genero=='Hombre')
+                $doctor="Dr. ".$persona->nombre." ".$persona->apellido;
+            else
+                $doctor="Dra. ".$persona->nombre." ".$persona->apellido;
+        }
         if($aux1->count()==0){
             $consulta= Consulta::create([
                 'ficha_id'=>$ficha->id,
                 'motivo'=>'-',
                 'diagnostico'=>'-',
+                'doctor'=>$doctor,
             ]);
             $signos_vitales= Signos_vitales::create([
                 'consulta_id'=>$consulta->id,
@@ -86,8 +98,14 @@ class ConsultaController extends Controller
             $historial=Historial::findOrFail($aux2[0]["id"]);
             $aux3=$historial->id;
         }
+        $aux4=Gabinete::where('consulta_id', $consulta->id)->get();
+        if($aux4->count()==0){
+            $gabinete=null;
+        }else{
+            $gabinete=Gabinete::findOrFail($aux4[0]["id"]);
+        }
         //dd($consulta[0]["id"]);
-        return view('admin.consulta.crear', compact('paciente','ficha','consulta','signos_vitales','historial','aux3', 'SVM'));
+        return view('admin.consulta.crear', compact('paciente','ficha','consulta','signos_vitales','historial','aux3', 'SVM', 'gabinete'));
     }
 
     public function consulta_guardar(Request $request)
@@ -158,6 +176,7 @@ class ConsultaController extends Controller
             abort(404);
         }
     }
+
     public function historial_guardar(Request $request)
     {
         if ($request->ajax()) {
@@ -229,7 +248,65 @@ class ConsultaController extends Controller
             'estado'=>1
         ]);
         return redirect('admin/ficha/consulta')->with('mensaje', 'Consulta terminada exitosamente');
-
     }
 
+    public function gabinete_guardar (Request $request)// la id de la ficha
+    {
+        if ($request->ajax()) {
+            if($request->estudio_g!=null){
+                $aux=Gabinete::where('consulta_id',$request->consulta_id)->get();
+                if($aux->count()==0){
+                   $gabinete=Gabinete::create($request->all());
+                    return response()->json(['mensaje' =>'ok', 'gabinete' => $gabinete->id]);
+                }
+                else{
+                    $aux1=Gabinete::where('consulta_id',$request->consulta_id)->get();
+                    $gabinete=Gabinete::findOrFail($aux1[0]["id"]);
+                    $gabinete->update($request->all());
+
+                    return response()->json(['mensaje' =>'ok', 'gabinete' => $gabinete->id]);
+                }
+            }
+            else{
+                return response()->json(['mensaje' =>'no']);
+            }
+        } else {
+            abort(404);
+        }
+    }
+
+    public function gabinete_actualizar(Request $request)
+    {
+        if ($request->ajax()) {
+            if($request->estudio_g!=null){
+                Gabinete::findOrFail($request->gabinete_id)->update($request->all());
+                return response()->json(['mensaje' =>'actualizar','gabinete' =>$request->gabinete_id]);
+            }
+            else{
+                return response()->json(['mensaje' =>'no']);
+            }
+        } else {
+            abort(404);
+        }
+    }
+
+    public function imprimir_gabinete($id)// la id de la consulta
+    {
+        $consulta=Consulta::findOrFail($id);
+        $ficha=Ficha::findOrFail($consulta->ficha_id);
+        $clinica = Clinica ::findOrFail(1);
+        $aux1=Gabinete::where('consulta_id', $consulta->id)->get();
+        if($aux1->count()==0){
+            $gabinete=null;
+        }else{
+            $gabinete=Gabinete::findOrFail($aux1[0]["id"]);
+        }
+        if($clinica->logo==null)
+            $image = base64_encode(file_get_contents(public_path("assets/ace/assets/images/avatars/logo.jpg")));
+        else
+            $image = base64_encode(file_get_contents(public_path("storage/Datos/Clinica/$clinica->logo")));
+        $pdf= PDF::loadview('admin.consulta.imprimir_gabinete', compact('clinica', 'image', 'ficha', 'consulta', 'gabinete'));
+        return $pdf->stream('ficha.pdf');
+
+    }
 }

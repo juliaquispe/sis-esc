@@ -53,6 +53,7 @@ class Usuario extends Authenticatable
                 'apellido_usuario'=>$this->apellido,
                 'email_usuario'=>$this->email,
                 'foto_usuario'=>$this->foto,
+                'usuario_personal_id'=>$this->personal_id,
                 'rol_usuario'=>$this->rol->rol,
                 'rol_id'=>$this->rol->id,
             ]

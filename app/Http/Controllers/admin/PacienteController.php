@@ -7,6 +7,7 @@ use App\Http\Requests\ValidacionPaciente;
 use App\Models\Admin\Clinica;
 use App\Models\Admin\Consulta;
 use App\Models\Admin\Ficha;
+use App\Models\Admin\Gabinete;
 use App\Models\Admin\Historial;
 use App\Models\Admin\Paciente;
 use App\Models\Admin\Receta;
@@ -123,6 +124,15 @@ class PacienteController extends Controller
             else{
                 $datos[$j]["receta_id"]='no';
             }
+
+            $aux2=Gabinete::where('consulta_id', $consulta[0]["id"])->get();
+            if($aux2->count()>0){
+                $datos[$j]["gabinete"]=$aux2[0]["estudio_g"];
+                $datos[$j]["gabinete_id"]=$aux2[0]["id"];
+            }
+            else{
+                $datos[$j]["gabinete_id"]='no';
+            }
             $j++;
         }
         return view('admin.paciente.ver', compact('paciente', 'SVM','datos'));
@@ -193,11 +203,17 @@ class PacienteController extends Controller
         }else{
             $receta=Receta::findOrFail($aux1[0]["id"]);
         }
+        $aux2=Gabinete::where('consulta_id', $consulta->id)->get();
+        if($aux2->count()==0){
+            $gabinete=null;
+        }else{
+            $gabinete=Gabinete::findOrFail($aux2[0]["id"]);
+        }
         if($clinica->logo==null)
             $image = base64_encode(file_get_contents(public_path("assets/ace/assets/images/avatars/logo.jpg")));
         else
             $image = base64_encode(file_get_contents(public_path("storage/Datos/Clinica/$clinica->logo")));
-        $pdf= PDF::loadview('admin.paciente.imprimir_consulta', compact('clinica', 'image', 'ficha', 'signos_vitales', 'consulta', 'receta'));
+        $pdf= PDF::loadview('admin.paciente.imprimir_consulta', compact('clinica', 'image', 'ficha', 'signos_vitales', 'consulta', 'receta', 'gabinete'));
         return $pdf->stream('ficha.pdf');
     }
 
@@ -232,6 +248,7 @@ class PacienteController extends Controller
             $datos[$j]["motivo"]=$consulta[0]["motivo"];
             $datos[$j]["sintoma"]=$consulta[0]["sintoma"];
             $datos[$j]["diagnostico"]=$consulta[0]["diagnostico"];
+            $datos[$j]["doctor"]=$consulta[0]["doctor"];
             $signos=Signos_Vitales::findOrFail($consulta[0]["id"]);
             $datos[$j]["altura"]=$signos->altura;
             $datos[$j]["peso"]=$signos->peso;
@@ -247,6 +264,15 @@ class PacienteController extends Controller
             }
             else{
                 $datos[$j]["receta_id"]='no';
+            }
+            $aux2=Gabinete::where('consulta_id', $consulta[0]["id"])->get();
+            if($aux2->count()>0){
+                $datos[$j]["gabinete_id"]=$aux2[0]["gabinete_id"];
+                $datos[$j]["estudio_g"]=$aux2[0]["estudio_g"];
+                $datos[$j]["indicacion_g"]=$aux2[0]["indicacion_g"];
+            }
+            else{
+                $datos[$j]["gabinete_id"]='no';
             }
             $j++;
         }

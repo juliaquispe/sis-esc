@@ -119,8 +119,9 @@ Route:: group(['prefix'=>'admin','namespace'=>'admin', 'middleware'=>'auth'],fun
     Route:: get('historial/{id}/imprimir','ConsultaController@imprimir_historial')->name ('imprimir_historial');
     Route:: get('consulta/{id}/imprimir','ConsultaController@imprimir_consulta')->name ('imprimir_consulta');
     Route:: get('consulta/{id}/terminar','ConsultaController@terminar_consulta')->name ('terminar_consulta');
-
+    Route:: post('gabinete','ConsultaController@gabinete_guardar')->name ('guardar_gabinete');
+    Route:: put('gabinete/actualizar/','ConsultaController@gabinete_actualizar')->name ('actualizar_gabinete');
+    Route:: get('gabinete/{id}/imprimir','ConsultaController@imprimir_gabinete')->name ('imprimir_gabinete');
 
     //Route:: get('ficha/enfermeria','EnfermeriaController@enfermeria')->name ('enfermeria');
-
 });

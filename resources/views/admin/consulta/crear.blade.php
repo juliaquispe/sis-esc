@@ -8,6 +8,7 @@ Consulta
 <script src="{{asset("assets/pages/scripts/consulta/receta_input.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/consulta/receta.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/consulta/historial.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/consulta/gabinete.js")}}" type="text/javascript"></script>
 @endsection
 <div class="row">
     <div class="col-xs-12">

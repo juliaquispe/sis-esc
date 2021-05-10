@@ -201,7 +201,7 @@
         <table  width="100%" align="center">
             <tr>
                 <th>
-                    Dr. Benigno Gutierrez Vargas
+                    {{$consulta->doctor}}
                 </th>
             </tr>
         </table><br><br>
