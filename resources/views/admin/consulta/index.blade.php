@@ -5,6 +5,9 @@
 @section('scripts')
 <script src="{{asset("assets/pages/scripts/ficha/validar.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/alert/alert.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/datatables/datatables.js")}}" type="text/javascript"></script>
+
+
 <script>
     function mostrar(id) {
         if (id !=null) {
@@ -19,7 +22,8 @@
 <div class="page-header">
     <h1>
         <h3 style="color: rgb(30, 80, 109)" class=" center">Registrar Ficha para:
-                <b>{{$servicio->nombre}}</b>
+            <b>{{$servicio->nombre}}</b>
+            <button class="btn btn-purple pull-right" onclick="location.href='{{route('calendario')}}'"><i class="fa fa-calendar"></i> Agenda de Atención</button>
         </h3>
     </h1>
 </div>
@@ -37,7 +41,7 @@
                         <option value="apellido_p">Apellido Paterno</option>
                         <option value="apellido_m">Apellido Materno</option>
                         <option value="ci">N° de Carnet</option>
-                        <option value="ci">N° de Expediente</option>
+                        <option value="id">N° de Expediente</option>
                         <option value="celular">Telf/Cel</option>
                     </select>
                 </div>
@@ -55,70 +59,70 @@
                 </div>
             </form>
         </div>
-        @if ($search)
-            <div class="col-xs-12">
-                <div class="alert alert-info">
-                    <i class="ace-icon fa fa-hand-o-right"></i>
-                    Los resultados de tu busqueda <b>'{{$search}}'</b> son:
-                    <a href="{{route('crear_ficha', ['id' => $servicio->id])}}" class="btn btn-primary btn-xs tooltipC pull-right" title="volver">
-                        <i class="glyphicon glyphicon-ok"></i>
-                    </a>
-                </div>
-            </div>
-        @endif
         @if ($datos)
-        <span class="blue center"><h3>RESULTADO DE BÚSQUEDA</h3></span>
-            <div class="box-body">
-                <table id="tabla-data" class="table  table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th class="col-lg-2" style="text-align: center;">Expediente</th>
-                            <th class="col-lg-4" style="text-align: center;">Nombres y Apellidos</th>
-                            <th class="col-lg-2" style="text-align: center;">Número de Carnet</th>
-                            <th class="col-lg-2" style="text-align: center;">Edad</th>
-                            <th class="col-lg-2" style="text-align: center;">Opción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($datos as  $paciente)
+            @if ( $datos->count()==0)
+                <div class="col-xs-12">
+                    <div class="alert alert-danger">
+                        <i class="ace-icon fa fa-hand-o-right"></i>
+                       Búsqueda sin resultados
+                        <a href="{{route('consulta')}}" class="btn btn-primary btn-xs tooltipC pull-right" title="volver">
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </a>
+                    </div>
+                </div>
+                @if(Auth::user()->rol->añadir ==1)
+                    <div class="col-xs-12 center">
+                        <button  class="btn btn-xl btn-success" onclick="location.href='{{route('crear_paciente')}}'" title="Crear Nuevo Paciente">
+                            <i class="fas fa fa-plus bigger-120"><b> Registrar Nuevo Paciente</b></i>
+                        </button>
+                    </div>
+                @endif
+            @else
+                <div class="col-xs-12">
+                    <div class="alert alert-info">
+                        <i class="ace-icon fa fa-hand-o-right"></i>
+                        Los resultados de tu búsqueda <b>'{{$search}}'</b> son:
+                        <a href="{{route('consulta')}}" class="btn btn-primary btn-xs tooltipC pull-right" title="volver">
+                            <i class="glyphicon glyphicon-ok"></i>
+                        </a>
+                    </div>
+                </div>
+                <span class="blue center"><h3>RESULTADO DE LA BÚSQUEDA</h3></span>
+                <div class="box-body">
+                    <table id="tabla-data" class="table  table-bordered table-hover">
+                        <thead>
                             <tr>
-                                <td style="text-align: center;">Exp 1</td>
-                                <td style="text-align: center;">{{$paciente->nombre}} {{$paciente->apellido_p}} {{$paciente->apellido_m}}</td>
-                                <td style="text-align: center;">{{$paciente->ci}}</td>
-                                <td style="text-align: center;">{{$edad= MyHelper::Edad_Paciente($paciente->fecha_nac,"index")}}</td>
-                                <td style="text-align: center;">
-                                    <div class="hidden-sm hidden-xs btn-group">
-                                        <button  class="btn btn-xs btn-info" data-toggle="modal" data-target="#CrearFicha{{$paciente->id}}" title="registrar ficha">
-                                            <i class="fa fa-book bigger-120"></i>
-                                        </button>
-                                        <div class="modal modal-info fade in" id="CrearFicha{{$paciente->id}}" tabindex="-1">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content" style="background: #f1f5db">
-                                                    <div class="modal-header " style="background: #192953">
-                                                        <button type="button" class="white close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                        <h4 class="white modal-title" style="text-align: center"><b>Crear Ficha</b></h4>
-                                                    </div>
-                                                    <form class="form-horizontal" role="form" id="form-general"  action="{{route ('guardar_ficha')}}"  method="POST">
-                                                        @csrf
-                                                        <div class="modal-body">
-                                                            @include('admin/ficha/form')
-                                                        </div>
-                                                        <div class="modal-footer" style="background: #192953">
-                                                            @include('botones/guardar')
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
+                                <th class="col-lg-2" style="text-align: center;">Expediente</th>
+                                <th class="col-lg-4" style="text-align: center;">Nombres y Apellidos</th>
+                                <th class="col-lg-2" style="text-align: center;">Número de Carnet</th>
+                                <th class="col-lg-2" style="text-align: center;">Edad</th>
+                                <th class="col-lg-2" style="text-align: center;">Opción</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            @foreach($datos as  $paciente)
+                                <tr>
+                                    <td style="text-align: center;">
+                                        {{$expediente= MyHelper::num_expediente($paciente->id)}}
+                                    </td>
+                                    <td style="text-align: center;">{{$paciente->apellido_p}} {{$paciente->apellido_m}} {{$paciente->nombre}}</td>
+                                    <td style="text-align: center;">{{$paciente->ci}}</td>
+                                    <td style="text-align: center;">{{$edad= MyHelper::Edad_Paciente($paciente->fecha_nac,"index")}}</td>
+                                    <td style="text-align: center;">
+                                        <div class="hidden-sm hidden-xs btn-group">
+                                            @if(Auth::user()->rol->añadir ==1)
+                                                <button  class="btn btn-xs btn-info" onclick="location.href='{{route('registrar_ficha', ['id' => $paciente->id])}}'" title="registrar ficha">
+                                                    <i class="fa fa-book bigger-120"></i>
+                                                </button>
+                                            @endif
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
         @else <br><br>
             @php
                 setlocale(LC_ALL,"es_CO.utf8");
@@ -134,7 +138,7 @@
                         <i class="fas fa fa-calendar"> Ver Por Fecha</i>
                     </button>
                     @if ($aux!=$fecha_actual)
-                        <button  class="btn btn-xs btn-primary pull-right " title="Volver" onclick="location.href='{{route('crear_ficha', ['id' => $servicio->id])}}'">
+                        <button  class="btn btn-xs btn-primary pull-right " title="Volver" onclick="location.href='{{route('consulta')}}'">
                             <i class="fa fa-faw fa-reply-all bigger-120"></i>
                         </button>
                     @endif
@@ -171,7 +175,7 @@
                     <thead>
                         <tr>
                             <th class="col-lg-1" style="text-align: center;">Expediente</th>
-                            <th class="col-lg-3" style="text-align: center;">Nombre y Apellidos</th>
+                            <th class="col-lg-3" style="text-align: center;">Nombres y Apellidos</th>
                             <th class="col-lg-3" style="text-align: center;">Edad</th>
                             <th class="col-lg-1" style="text-align: center;">Hora</th>
                             <th class="col-lg-2" style="text-align: center;">Estado</th>
@@ -181,8 +185,10 @@
                     <tbody>
                         @foreach ($fichas as $ficha)
                             <tr>
-                                <td style="text-align: center;">{{$ficha->paciente->id}}</td>
-                                <td style="text-align: center;">{{$ficha->paciente->nombre}} {{$ficha->paciente->apellido_p}} {{$ficha->paciente->apellido_m}}</td>
+                                <td style="text-align: center;">
+                                    {{$expediente= MyHelper::num_expediente($ficha->paciente->id)}}
+                                </td>
+                                <td style="text-align: center;">{{$ficha->paciente->apellido_p}} {{$ficha->paciente->apellido_m}} {{$ficha->paciente->nombre}}</td>
                                 <td style="text-align: center;">
                                     {{$edad=MyHelper:: Edad_Paciente($ficha->paciente->fecha_nac, "index")}}
                                 </td>
@@ -197,11 +203,22 @@
                                     @if ($ficha->estado==1)
                                         <span class="label label-lg label-success arrowed-in arrowed-in-right"> Atendido</span>
                                     @else
-                                        <span class="label label-lg label-danger arrowed-in arrowed-in-right"> En espera</span>
+                                        @if ($ficha->estado==2)
+                                            <span class="label label-lg label-danger arrowed-in arrowed-in-right"> Faltó</span>
+                                        @else
+                                            <span class="label label-lg label-danger arrowed-in arrowed-in-right"> En espera</span>
+                                        @endif
                                     @endif
                                 </td>
                                 <td style="text-align: center;">
                                     @if(Auth::user()->rol->editar ==1)
+                                        @if ($ficha->estado==0)
+                                            <button  class="btn btn-xs btn-warning" onclick="location.href='{{route('editar_ficha', ['id'=>$ficha->id])}}'" title="Editar Ficha">
+                                                <i class="fas fa fa-pencil-square-o bigger-120"></i>
+                                            </button>
+                                        @endif
+                                    @endif
+                                    {{--@if(Auth::user()->rol->editar ==1)
                                         @if ($ficha->estado==0)
                                             <div class="hidden-sm hidden-xs btn-group">
                                                 <button  class="btn btn-xs btn-warning" data-toggle="modal" data-target="#EditarFicha{{$ficha->id}}" title="registrar ficha">
@@ -234,7 +251,7 @@
                                                 </div>
                                             </div>
                                         @endif
-                                    @endif
+                                    @endif--}}
                                     @if(Auth::user()->rol->eliminar ==1)
                                         @if ($ficha->estado==0)
                                             <form action="{{route('eliminar_ficha', ['id' => $ficha->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
@@ -259,16 +276,13 @@
                                             </button>
                                         </form>
                                     @else
-                                    {{--
-                                        <form action="{{route('imprimir_ficha', ['id'=>$ficha->id])}}" target="{{$ficha->id}}">
-                                            <button class="btn btn-success btn-xs eliminar tooltipsC" type="submit" title="Ver Consulta"><i class="fa fa-file-pdf-o"></i></button>
-                                        </form>
-                                     --}}
-                                        <form action="{{route('crear_consulta', ['id' => $ficha->id])}}" class="d-inline">
-                                            <button type="submit" class="btn btn-inverse btn-xs eliminar tooltipsC" title="Editar consulta">
-                                                <i class="fa fa fw fa-stethoscope"></i>
-                                            </button>
-                                        </form>
+                                        @if ($ficha->estado==1)
+                                            <form action="{{route('crear_consulta', ['id' => $ficha->id])}}" class="d-inline">
+                                                <button type="submit" class="btn btn-inverse btn-xs eliminar tooltipsC" title="Editar consulta">
+                                                    <i class="fa fa fw fa-stethoscope"></i>
+                                                </button>
+                                            </form>
+                                        @endif
                                     @endif
                                 </td>
                             </tr>

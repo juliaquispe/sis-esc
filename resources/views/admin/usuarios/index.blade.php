@@ -5,6 +5,7 @@
 @section('scripts')
 <script src="{{asset("assets/pages/scripts/usuario/index.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/usuario/estado.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/datatables/datatables.js")}}" type="text/javascript"></script>
 @endsection
 @section('contenido')
 <div class="page-header">

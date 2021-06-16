@@ -12,7 +12,7 @@
 @section('contenido')
     <div class="page-header">
         <h1>
-            Lista de Personal Inactivo
+            Lista de personal retirado
         </h1>
     </div>
     <div class="row">
@@ -62,7 +62,7 @@
                                         <form action="{{route('activar_personal', ['id' => $per->id])}}" class="d-inline form-estado" method="POST" id="form-estado">
                                             @csrf
                                             @method("put")
-                                            <button type="submit" class="btn btn-success btn-xs eliminar tooltipsC" title="Reactivar Personar">
+                                            <button type="submit" class="btn btn-success btn-xs eliminar tooltipsC" title="Reactivar Personal">
                                                 <i class="ace-icon glyphicon glyphicon-ok"></i>
                                             </button>
                                         </form>

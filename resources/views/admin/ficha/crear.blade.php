@@ -1,4 +1,4 @@
-@extends("theme.$theme.layout")
+{{-- @extends("theme.$theme.layout")
 @section('titulo')
     Crear_Ficha
 @endsection
@@ -21,7 +21,7 @@
         <h3 style="color: rgb(30, 80, 109)" class=" center">Registrar Ficha para:
                 <b>{{$servicio->nombre}}</b>
             <div class="box-tools pull-right">
-                <a href="{{route('ficha')}}" class="btnn btn-block btn-info btn-sm">{{-- boton para ir a otra tabla --}}
+                <a href="{{route('ficha')}}" class="btnn btn-block btn-info btn-sm">
                     <style type="text/css">
                         .btnn{
                         padding: 5px;
@@ -127,25 +127,6 @@
                                         </div>
                                     </div>
                                 </td>
-                                {{-- <td style="text-align: center;">
-                                    <div class="hidden-sm hidden-xs btn-group">
-                                        @if(Auth::user()->rol->editar ==1)
-                                            <a href="{{route('editar_personal', ['id' => $per->id])}}" class="btn btn-warning btn-xs tooltipC" title="Editar Personal">
-                                                <i class="fas fa fa-pencil"></i>
-                                            </a>
-                                        @endif
-                                    </div>&nbsp;&nbsp;&nbsp;
-                                    <div class="hidden-sm hidden-xs btn-group">
-                                        @if(Auth::user()->rol->eliminar ==1)
-                                            <form action="{{route('inactivar_personal', ['id' => $per->id])}}" class="d-inline form-estado" method="POST" id="form-estado">
-                                                @csrf @method("put")
-                                                <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Inactivar Personal">
-                                                    <i class="ace-icon fa fa-ban"></i>
-                                                </button>
-                                            </form>
-                                        @endif
-                                    </div>
-                                </td> --}}
                             </tr>
                         @endforeach
                     </tbody>
@@ -282,16 +263,6 @@
                                             <i class="fa fa fw fa-download"></i>
                                         </button>
                                     </form>
-                                    {{-- <div class="hidden-sm hidden-xs btn-group">
-                                        @if(Auth::user()->rol->eliminar ==1)
-                                            <form action="{{route('eliminar_ficha', ['id' => $ficha->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
-                                                @csrf @method("delete")
-                                                <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Eliminar este Registro">
-                                                    <i class="fa fa fw fa-close"></i>
-                                                </button>
-                                            </form>
-                                        @endif
-                                    </div> --}}
                                 </td>
                             </tr>
                         @endforeach
@@ -302,4 +273,4 @@
     </div>
 </div>
 @endsection
-
+ --}}

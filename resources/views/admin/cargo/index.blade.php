@@ -28,7 +28,7 @@
                 <thead>
                     <tr>
                         <th class="col-lg-3" style="text-align: center;">Nombre</th>
-                        <th class="col-lg-4" style="text-align: center;">Descricion</th>
+                        <th class="col-lg-4" style="text-align: center;">Descripción</th>
                         <th class="col-lg-2" style="text-align: center;">Opción</th>
                     </tr>
                 </thead>

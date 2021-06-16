@@ -24,7 +24,7 @@
                     <input type="number" min="1" name="duracion" id="duracion" class="form-control">
                 </div>
                 <div class="col-xs-12 col-sm-3" >
-                    <label >botones</label><br>
+                    <label >Agregar</label><br>
                     <div class="col-xs-5">
                         <button id="btnAdd" type="button" class="btn btn-primary btn-xm tooltipsC" title="Agregar">
                             <i class="fa fa-plus"></i>
@@ -53,6 +53,7 @@
                 <label><b>indicaciones</b></label>
                 <textarea class="form-control" id="indicacion" name="indicacion" rows="3" maxlength="250"></textarea>
             </div><br><br>
+        </form>
             <div class="col-xs-12 align-center">
                 <div class="col-xs-2" id="div_guardar" style="display: none;">
                     <button class="btn btn-success" type="button" id="btnGuardar_R" style="display: block;"><i class="fa fa-check"> Guardar</i></button>
@@ -60,12 +61,12 @@
                 <div class="col-xs-2">
                     <button class="btn btn-primary" type="button" id="btnActualizar_R" style="display: none;"><i class="fa fa-wrench"> Actualizar</i></button>
                 </div>
-                {{-- <div class="col-xs-2">
-                    <button class="btn btn-warning" id="btnImprimir_R" style="display: none;"><i class="fa fa-print"> IMPRIMIR</i></button>
-                </div> --}}
+                <div class="col-xs-2">
+                    <form action="{{route('imprimir_receta', ['id'=>$consulta->id])}}" target="{{$consulta->id}}">
+                        <button class="btn btn-warning" type="submit" id="btnImprimir_R" name="" style="display: none;"><i class="fa fa-print"> IMPRIMIR</i></button>
+                    </form>
+                </div>
             </div>
-        </form>
-
         <div id="divElements">
             <div class="form-group" id="">
             </div>

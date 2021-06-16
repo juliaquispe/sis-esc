@@ -41,7 +41,7 @@
         <div id="navbar" class="navbar navbar-default          ace-save-state">
             <div class="navbar-container ace-save-state" id="navbar-container">
 				<div class="navbar-header pull-left">
-					<a href="index.html" class="navbar-brand">
+					 <a {{--href="index.html"--}} class="navbar-brand">
 						<small>
                             <i>
                                 @if ($clinica->logo==null)

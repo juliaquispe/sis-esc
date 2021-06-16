@@ -1,7 +1,16 @@
 1-ARREGLAR BUSQUEDA POR MAYUSCULAS Y MINUSCULAS
 2-Cambiar color de menu del cuadradito
-3- Validar fecha en crear y editar ficha
-4- Crear una nueva columna en consulta "DOCTOR"
+3-la ficha debe cambia de estado si no es atendido y ya paso la fecha
+- valiadar si pasado evento no se debe editar
+- si no hay en la busqueda crear nuevo pacienete en ficha
+- de la consulta imprimir que imprima solo la ficha no todo Ya esta
+- Recuperar fecha de ultima consulta en ultimo signos vitales Ya esta
+- DE LOS NO ATENDIDOS CAMBIA FECHA SOLO CUANDO BUSCAS POR FECHA SINO SIGUE EN ESPERA
+- Alerta antes de guardar el Alta
+-controlar la vista de las opsiones de lista de interns con baja
+- emn editar agenda aparece boton eliminar
 
-GROOT
-1 dar de baja al personal
+- no se debe sacar ,mas de una ficha para el mismo paciente para el mismo dia
+- no se debe ver fechas posteriores a las fechas hablitadas
+- que si no tiene tiene dias habilitadas que no me muestre la  vista de crear ficha
+- que en enfermeria recupere datos si es paciente de esa institucion

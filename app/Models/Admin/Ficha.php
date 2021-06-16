@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ficha extends Model
 {
     protected $table = "ficha";
-    protected $fillable=['paciente_id','servicio_id','fecha','hora','estado'];
+    protected $fillable=['paciente_id','servicio_id','fecha','hora','estado', 'turno'];
 
     public function paciente()
     {

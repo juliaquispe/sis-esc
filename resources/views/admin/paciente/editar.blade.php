@@ -1,6 +1,6 @@
 @extends("theme.$theme.layout")
 @section('titulo')
-    Crear_Paciente
+    Editar_Paciente
 @endsection
 @section("styles")
     <link href="{{asset("assets/js/bootstrap-fileinput-master/css/fileinput.min.css")}}" rel="stylesheet" type="text/css"/>

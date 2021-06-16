@@ -118,7 +118,7 @@
             <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> <span class="blue">Altura</span></label>
             <div class="col-sm-3">
                 <span class="input-icon">
-                <input type="number" class="form-control input-sm" id="altura" name="altura" min="30" max="250" value="{{old('altura', $SVM->altura ?? '')}}" placeholder="150"/>
+                <input type="number" class="form-control input-sm" id="altura" name="altura" min="30" max="250" value="{{old('altura', $signos_vitales->altura ?? '')}}" placeholder="150"/>
                 <i class="ace-icon glyphicon glyphicon-arrow-up" style="color: darkviolet"></i>
                 </span>
             </div>
@@ -128,7 +128,7 @@
             <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> <span class="blue">Peso</span></label>
             <div class="col-sm-3">
                 <span class="input-icon">
-                <input type="number" class="form-control input-sm" id="peso" name="peso" min="1" max="300" value="{{old('peso', $SVM->peso ?? '')}}" placeholder="60"/>
+                <input type="number" class="form-control input-sm" id="peso" name="peso" min="1" max="300" value="{{old('peso', $signos_vitales->peso ?? '')}}" placeholder="60"/>
                 <i class="ace-icon fa fa-tachometer" style="color: rgb(100, 149, 237)"></i>
                 </span>
             </div>
@@ -138,7 +138,7 @@
             <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> <span class="blue">IMC</span></label>
             <div class="col-sm-3">
                 <span class="input-icon">
-                <input type="number" class="form-control input-sm" id="imc" name="imc" value="{{old('imc', $SVM->imc ?? '')}}" />
+                <input type="number" class="form-control input-sm" id="imc" name="imc" value="{{old('imc', $signos_vitales->imc ?? '')}}" />
                 <i class="ace-icon glyphicon glyphicon-piggy-bank" style="color: rgb(60, 196, 89)"></i>
                 </span>
             </div>
@@ -148,7 +148,7 @@
             <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> <span class="blue">Temp.</span></label>
             <div class="col-sm-3">
                 <span class="input-icon">
-                <input type="number" class="form-control input-sm" id="temperatura" name="temperatura" min="20" max="50" value="{{old('temperatura', $SVM->temperatura ?? '')}}" placeholder="36"/>
+                <input type="number" class="form-control input-sm" id="temperatura" name="temperatura" min="20" max="50" value="{{old('temperatura', $signos_vitales->temperatura ?? '')}}" placeholder="36"/>
                 <i class="ace-icon glyphicon glyphicon-fire" style="color: rgb(240, 161, 15)"></i>
                 </span>
             </div>
@@ -158,7 +158,7 @@
             <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> <span class="blue">P.A.</span></label>
             <div class="col-sm-3">
                 <span class="input-icon">
-                <input type="text" class="form-control input-sm" id="p_a" name="p_a" value="{{old('p_a', $SVM->p_a ?? '')}}" placeholder="120/80"/>
+                <input type="text" class="form-control input-sm" id="p_a" name="p_a" value="{{old('p_a', $signos_vitales->p_a ?? '')}}" placeholder="120/80"/>
                 <i class="ace-icon glyphicon glyphicon-time blue"></i>
                 </span>
             </div>
@@ -168,7 +168,7 @@
             <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> <span class="blue">F.C.</span></label>
             <div class="col-sm-3">
                 <span class="input-icon">
-                <input type="number" class="form-control input-sm" id="f_c" name="f_c" min="40" max="120" value="{{old('f_c', $SVM->f_c ?? '')}}" placeholder="60"/>
+                <input type="number" class="form-control input-sm" id="f_c" name="f_c" min="40" max="120" value="{{old('f_c', $signos_vitales->f_c ?? '')}}" placeholder="60"/>
                 <i class="ace-icon glyphicon glyphicon-heart-empty" style="color: red"></i>
                 </span>
             </div>
@@ -178,7 +178,7 @@
             <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> <span class="blue">F.R.</span></label>
             <div class="col-sm-3">
                 <span class="input-icon">
-                <input type="number" class="form-control input-sm" id="f_r" name="f_r" min="10" max="30" value="{{old('f_r', $SVM->f_r ?? '')}}" placeholder="12"/>
+                <input type="number" class="form-control input-sm" id="f_r" name="f_r" min="10" max="30" value="{{old('f_r', $signos_vitales->f_r ?? '')}}" placeholder="12"/>
                 <i class="ace-icon glyphicon glyphicon-flash" style="color: saddlebrown"></i>
                 </span>
             </div>

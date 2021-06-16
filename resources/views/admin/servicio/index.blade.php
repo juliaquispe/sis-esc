@@ -61,7 +61,7 @@
                                         </a>
                                     @endif
                                 </div>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <div class="hidden-sm hidden-xs btn-group">
+                                {{-- <div class="hidden-sm hidden-xs btn-group">
                                     @if(Auth::user()->rol->eliminar ==1)
                                         <form action="{{route('eliminar_servicio', ['id' => $servicio->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
                                             @csrf @method("delete")
@@ -70,7 +70,7 @@
                                             </button>
                                         </form>
                                     @endif
-                                </div>
+                                </div> --}}
                             </td>
                         </tr>
                     @endforeach

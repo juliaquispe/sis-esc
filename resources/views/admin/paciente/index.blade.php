@@ -4,7 +4,7 @@
 	Pacientes
 @endsection
 @section('scripts')
-<script src="{{asset("assets/pages/scripts/alert/alert.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/personal/estado.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/paciente/modal.js")}}" type="text/javascript"></script>
 <script>
     function mostrar(id) {
@@ -42,7 +42,7 @@
                             <option value="apellido_p">Apellido Paterno</option>
                             <option value="apellido_m">Apellido Materno</option>
                             <option value="ci">N° de Carnet</option>
-                            <option value="expediente">N° de Expediente</option>
+                            <option value="id">N° de Expediente</option>
                             <option value="celular">Telf/Cel</option>
                         </select>
                     </div>
@@ -76,6 +76,21 @@
                     <thead>
                         <tr>
                             <form action="{{route('ordenar_paciente')}}" method="POST" name="form2">
+                                <th class="col-lg-1.5" style="text-align: center;">Expediente
+                                    @csrf
+                                    <input type="hidden" id="id" name="id" value=3>
+                                    <input type="hidden" id="search" name="search" value="{{old('search', $search ?? '')}}">
+                                    <input type="hidden" id="selec" name="selec" value="{{$seleccion}}" >
+                                    <button  type="submit" class="pull-right" style="border:0">
+                                        @if($aux==3)
+                                            <i class="glyphicon glyphicon-triangle-bottom pull-right" style="color: navy"></i>
+                                        @else
+                                            <i class="glyphicon glyphicon-sort pull-right"></i>
+                                        @endif
+                                    </button>
+                                </th>
+                            </form>
+                            <form action="{{route('ordenar_paciente')}}" method="POST" name="form2">
                                 <th class="col-lg-1.5" style="text-align: center;">Nombres y Apellidos
                                     @csrf
                                     <input type="hidden" id="id" name="id" value=1>
@@ -107,21 +122,6 @@
                                 </th>
                             </form>
                             <form action="{{route('ordenar_paciente')}}" method="POST" name="form2">
-                                <th class="col-lg-1.5" style="text-align: center;">Expediente
-                                    @csrf
-                                    <input type="hidden" id="id" name="id" value=3>
-                                    <input type="hidden" id="search" name="search" value="{{old('search', $search ?? '')}}">
-                                    <input type="hidden" id="selec" name="selec" value="{{$seleccion}}" >
-                                    <button  type="submit" class="pull-right" style="border:0">
-                                        @if($aux==3)
-                                            <i class="glyphicon glyphicon-triangle-bottom pull-right" style="color: navy"></i>
-                                        @else
-                                            <i class="glyphicon glyphicon-sort pull-right"></i>
-                                        @endif
-                                    </button>
-                                </th>
-                            </form>
-                            <form action="{{route('ordenar_paciente')}}" method="POST" name="form2">
                                 <th class="col-lg-1.5" style="text-align: center;">Edad
                                     @csrf
                                     <input type="hidden" id="id" name="id" value=4>
@@ -136,25 +136,10 @@
                                     </button>
                                 </th>
                             </form>
-                            {{-- <form action="{{route('ordenar_paciente')}}" method="POST" name="form2">
-                                <th class="col-lg-1.5" style="text-align: center;">Grupo Sanguineo
-                                    @csrf
-                                    <input type="hidden" id="id" name="id" value=5>
-                                    <input type="hidden" id="search" name="search" value="{{old('search', $search ?? '')}}">
-                                    <input type="hidden" id="selec" name="selec" value="{{$seleccion}}" >
-                                    <button  type="submit" class="pull-right" style="border:0">
-                                        @if($aux==5)
-                                            <i class="glyphicon glyphicon-triangle-bottom pull-right" style="color: navy"></i>
-                                        @else
-                                            <i class="glyphicon glyphicon-sort pull-right"></i>
-                                        @endif
-                                    </button>
-                                </th>
-                            </form> --}}
                             <form action="{{route('ordenar_paciente')}}" method="POST" name="form2">
                                 <th class="col-lg-1.5" style="text-align: center;">Contacto
                                     @csrf
-                                    <input type="hidden" id="id" name="id" value=6>
+                                    <input type="hidden" id="id" name="id" value=5>
                                     <input type="hidden" id="search" name="search" value="{{old('search', $search ?? '')}}">
                                     <input type="hidden" id="selec" name="selec" value="{{$seleccion}}" >
                                     <button  type="submit" class="pull-right" style="border:0">
@@ -172,25 +157,21 @@
                     <tbody>
                         @foreach($datos as  $pac)
                         <tr>
-                            <td style="text-align: center;">{{$pac->nombre}} {{$pac->apellido_p}} {{$pac->apellido_m}}</td>
+                            <td style="text-align: center;">
+                                {{$expediente= MyHelper::num_expediente($pac->id)}}
+                            </td>
+                            <td style="text-align: center;">{{$pac->apellido_p}} {{$pac->apellido_m}} {{$pac->nombre}}</td>
                             <td style="text-align: center;">{{$pac->ci}}</td>
-                            <td style="text-align: center;">E3456</td>
                             <td style="text-align: center;">
                                 {{$edad= MyHelper::Edad_Paciente($pac->fecha_nac,"index")}}
                             </td>
-                            {{-- <td style="text-align: center;">
-                                @if ($pac->t_sangre==null)
-                                    <span class="red">{{"No Registrado"}}</span>
-                                @else
-                                    {{$pac->t_sangre}}
-                                @endif
-                            </td> --}}
                             <td style="text-align: center;">
                                 @if ($pac->celular==null)
                                     <span class="red">{{"No Registrado"}}</span>
                                 @else
                                     {{$pac->celular}}
-                                @endif                            </td>
+                                @endif
+                            </td>
                             <td style="text-align: center;">
                                 <div class="hidden-sm hidden-xs btn-group">
                                     @if(Auth::user()->rol->editar ==1)
@@ -206,12 +187,22 @@
                                         </a>
                                     @endif
                                 </div>&nbsp;
-                                <div class="hidden-sm hidden-xs btn-group">
+                                {{-- <div class="hidden-sm hidden-xs btn-group">
                                     @if(Auth::user()->rol->eliminar ==1)
                                         <form action="{{route('eliminar_paciente', ['id' => $pac->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">
                                             @csrf @method("delete")
                                             <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Eliminar Paciente">
                                                 <i class="fa fa-close"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                </div> --}}
+                                <div class="hidden-sm hidden-xs btn-group">
+                                    @if(Auth::user()->rol->eliminar ==1)
+                                        <form action="{{route('inactivar_paciente', ['id' => $pac->id])}}" class="d-inline form-estado" method="POST" id="form-estado">
+                                            @csrf @method("put")
+                                            <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Dar de baja">
+                                                <i class="ace-icon fa fa-ban"></i>
                                             </button>
                                         </form>
                                     @endif

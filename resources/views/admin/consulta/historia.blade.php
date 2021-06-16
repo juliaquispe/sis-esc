@@ -486,53 +486,103 @@
             <textarea class="form-control" id="o_detalles" name="o_detalles" rows="3" maxlength="500" required>{{old('o_detalles', $historial->o_detalles ?? '')}}</textarea>
         </div>
     </div>
-    <div class="col-xs-12 col-sm-4 center">
-        <div class="form-group align-center">
-            <label class="pink"><b>Antecedentes Ginecológicos</b></label>
+    @if ($paciente->genero=='Mujer')
+        <div class="col-xs-12 col-sm-4 center">
+            <div class="form-group align-center">
+                <label class="pink"><b>Antecedentes Ginecológicos</b></label>
+            </div>
+            <table class="col-xs-12">
+                <tr>
+                    <td style="width: 70%" class="align-left">
+                        <label > &nbsp; Embarazos</label>
+                    </td>
+                    <td style="width: 30%" class="align-left">
+                        <input name="g_embarazos" id="g_embarazos" type="checkbox" value="1" onchange="javascript:showContent()"
+                            @if (isset($historial)&&$historial->g_embarazos == "si")
+                                checked
+                            @endif
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 70%" class="align-left">
+                        <label > &nbsp; Gestante</label>
+                    </td>
+                    <td style="width: 30%" class="align-left">
+                        <input name="g_gestante" id="g_gestante" type="checkbox" value="1" onchange="javascript:showContent()"
+                            @if (isset($historial)&&$historial->g_gestante == "si")
+                                checked
+                            @endif
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-left" cellpadding="10px">
+                        <label > &nbsp; Cancer de Mama</label>
+                    </td>
+                    <td class="align-left">
+                        <input name="g_c_mama" id="g_c_mama" type="checkbox" value="1" onchange="javascript:showContent()"
+                            @if (isset($historial)&&$historial->g_c_mama == "si")
+                                checked
+                            @endif
+                        >
+                    </td>
+                </tr>
+            </table>
+            <label class="purple center"><b>Detalles</b></label>
+            <div class="col-sm-12 center">
+                <textarea class="form-control" id="g_detalles" name="g_detalles" rows="3" maxlength="500" required>{{old('g_detalles', $historial->g_detalles ?? '')}}</textarea>
+            </div>
         </div>
-        <table class="col-xs-12">
-            <tr>
-                <td style="width: 70%" class="align-left">
-                    <label > &nbsp; Embarazos</label>
-                </td>
-                <td style="width: 30%" class="align-left">
-                    <input name="g_embarazos" id="g_embarazos" type="checkbox" value="1" onchange="javascript:showContent()"
-                        @if (isset($historial)&&$historial->g_embarazos == "si")
-                            checked
-                        @endif
-                    >
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 70%" class="align-left">
-                    <label > &nbsp; Gestante</label>
-                </td>
-                <td style="width: 30%" class="align-left">
-                    <input name="g_gestante" id="g_gestante" type="checkbox" value="1" onchange="javascript:showContent()"
-                        @if (isset($historial)&&$historial->g_gestante == "si")
-                            checked
-                        @endif
-                    >
-                </td>
-            </tr>
-            <tr>
-                <td class="align-left" cellpadding="10px">
-                    <label > &nbsp; Cancer de Mama</label>
-                </td>
-                <td class="align-left">
-                    <input name="g_c_mama" id="g_c_mama" type="checkbox" value="1" onchange="javascript:showContent()"
-                        @if (isset($historial)&&$historial->g_c_mama == "si")
-                            checked
-                        @endif
-                    >
-                </td>
-            </tr>
-        </table>
-        <label class="purple center"><b>Detalles</b></label>
-        <div class="col-sm-12 center">
-            <textarea class="form-control" id="g_detalles" name="g_detalles" rows="3" maxlength="500" required>{{old('g_detalles', $historial->g_detalles ?? '')}}</textarea>
+    @else
+        <div class="col-xs-12 col-sm-4 center" style="display: none">
+            <div class="form-group align-center">
+                <label class="pink"><b>Antecedentes Ginecológicos</b></label>
+            </div>
+            <table class="col-xs-12">
+                <tr>
+                    <td style="width: 70%" class="align-left">
+                        <label > &nbsp; Embarazos</label>
+                    </td>
+                    <td style="width: 30%" class="align-left">
+                        <input name="g_embarazos" id="g_embarazos" type="checkbox" value="1" onchange="javascript:showContent()"
+                            @if (isset($historial)&&$historial->g_embarazos == "si")
+                                checked
+                            @endif
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 70%" class="align-left">
+                        <label > &nbsp; Gestante</label>
+                    </td>
+                    <td style="width: 30%" class="align-left">
+                        <input name="g_gestante" id="g_gestante" type="checkbox" value="1" onchange="javascript:showContent()"
+                            @if (isset($historial)&&$historial->g_gestante == "si")
+                                checked
+                            @endif
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-left" cellpadding="10px">
+                        <label > &nbsp; Cancer de Mama</label>
+                    </td>
+                    <td class="align-left">
+                        <input name="g_c_mama" id="g_c_mama" type="checkbox" value="1" onchange="javascript:showContent()"
+                            @if (isset($historial)&&$historial->g_c_mama == "si")
+                                checked
+                            @endif
+                        >
+                    </td>
+                </tr>
+            </table>
+            <label class="purple center"><b>Detalles</b></label>
+            <div class="col-sm-12 center">
+                <textarea class="form-control" id="g_detalles" name="g_detalles" rows="3" maxlength="500" required>{{old('g_detalles', $historial->g_detalles ?? '')}}</textarea>
+            </div>
         </div>
-    </div>
+    @endif
 </div>
 <br>
 <div class="col-xs-12" >

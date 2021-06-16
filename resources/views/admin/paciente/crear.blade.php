@@ -31,7 +31,7 @@
                     border-radius: 10px;
                     }
                 </style>
-                <i class="fa fa-fw fa-reply-all"></i>Ver Lista de Pacientes
+                <i class="fa fa-fw fa-reply-all"></i>Volver a Lista de Pacientes
               </a>
         </div>
     </h1>

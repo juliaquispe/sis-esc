@@ -162,7 +162,7 @@ class UsuarioAdminSeeder extends Seeder
                 ]);
                 DB::table('menu')->insert([
                     'menu_id'=>0,
-                    'nombre'=>'Fichaje',
+                    'nombre'=>'Atención',
                     'url'=>'admin/ficha/#',
                     'orden'=>8,
                     'icono'=>'fa-book'
@@ -181,6 +181,13 @@ class UsuarioAdminSeeder extends Seeder
                             'url'=>'admin/servicio',
                             'orden'=>2,
                             'icono'=>'fa-asterisk'
+                        ]);
+                        DB::table('menu')->insert([
+                            'menu_id'=>2,
+                            'nombre'=>'Reportes',
+                            'url'=>'admin/reportes',
+                            'orden'=>3,
+                            'icono'=>'fa-book'
                         ]);
                         DB::table('menu')->insert([
                             'menu_id'=>3,
@@ -215,7 +222,7 @@ class UsuarioAdminSeeder extends Seeder
                             'nombre'=>'Ver Usuarios con Baja',
                             'url'=>'admin/usuario_inactivo',
                             'orden'=>3,
-                            'icono'=>'fa-user'
+                            'icono'=>'fas fa-ban'
                         ]);
                         DB::table('menu')->insert([
                             'menu_id'=>5,
@@ -243,7 +250,7 @@ class UsuarioAdminSeeder extends Seeder
                             'nombre'=>'Ver Personal Retirado',
                             'url'=>'admin/personal_inactivo',
                             'orden'=>3,
-                            'icono'=>'fa-eye'
+                            'icono'=>'fas fa-ban'
                         ]);
                         DB::table('menu')->insert([
                             'menu_id'=>7,
@@ -251,6 +258,13 @@ class UsuarioAdminSeeder extends Seeder
                             'url'=>'admin/paciente',
                             'orden'=>1,
                             'icono'=>'fa-search'
+                        ]);
+                        DB::table('menu')->insert([
+                            'menu_id'=>7,
+                            'nombre'=>'Ver Paciente con baja',
+                            'url'=>'admin/paciente_inactivo',
+                            'orden'=>2,
+                            'icono'=>'fas fa-ban'
                         ]);
                         DB::table('menu')->insert([
                             'menu_id'=>8,
@@ -269,9 +283,16 @@ class UsuarioAdminSeeder extends Seeder
                         DB::table('menu')->insert([
                             'menu_id'=>8,
                             'nombre'=>'Enfermeria',
-                            'url'=>'admin/ficha/enfermeria',
-                            'orden'=>2,
+                            'url'=>'admin/enfermeria',
+                            'orden'=>3,
                             'icono'=>'fa-book'
+                        ]);
+                        DB::table('menu')->insert([
+                            'menu_id'=>8,
+                            'nombre'=>'Internación',
+                            'url'=>'admin/internacion',
+                            'orden'=>4,
+                            'icono'=>'fa fa-bed'
                         ]);
 
                 DB::table('menu_rol')->insert(['rol_id'=>1,'menu_id'=>1]);
@@ -297,6 +318,9 @@ class UsuarioAdminSeeder extends Seeder
                 DB::table('menu_rol')->insert(['rol_id'=>1,'menu_id'=>21]);
                 DB::table('menu_rol')->insert(['rol_id'=>1,'menu_id'=>22]);
                 DB::table('menu_rol')->insert(['rol_id'=>1,'menu_id'=>23]);
+                DB::table('menu_rol')->insert(['rol_id'=>1,'menu_id'=>24]);
+                DB::table('menu_rol')->insert(['rol_id'=>1,'menu_id'=>25]);
+                DB::table('menu_rol')->insert(['rol_id'=>1,'menu_id'=>26]);
 
         DB::table('cargo')->insert([
             'nombre'=>'Gerente',
@@ -365,6 +389,7 @@ class UsuarioAdminSeeder extends Seeder
                 'celular'=>$faker->unique()->numberBetween($min = 10000, $max = 999999),
                 'fecha_nac'=>$faker->dateTimeBetween($startDate = '-100 years', $endDate = 'now'),
                 'genero'=>$faker->randomElement(['Hombre', 'Mujer']),
+                'created_at'=>$faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
                 //'t_sangre'=>$faker->randomElement(['O negativo', 'O positivo','A negativo','A positivo','B negativo','B positivo','AB negativo','AB positivo',null]),
             ]);
         }
@@ -377,6 +402,7 @@ class UsuarioAdminSeeder extends Seeder
             'celular'=>'74211366',
             'fecha_nac'=>'1997-08-16',
             'genero'=>'Mujer',
+            'created_at'=>'1997-08-16',
         ]);
 
         DB::table('servicio')->insert([
@@ -387,9 +413,16 @@ class UsuarioAdminSeeder extends Seeder
             'nombre'=>'Enfermeria',
             'descripcion'=>'Fomentar el cuidado integral al individuo, familia y comunidad, aplicando el Proceso de Atención de Enfermería a nivel de promoción, prevención, recuperación y rehabilitación.'
         ]);
+        $cama=array();
+        for($i=0;$i<3;$i++){
+            $cama[$i]['orden']=$i+1;
+            $cama[$i]["estado"]='libre';
+        }
+        $cama=json_encode($cama);
         DB::table('servicio')->insert([
             'nombre'=>'Internaciones',
-            'descripcion'=>'La sala de corta estancia ofrece el servicio en un ambiente agradable, con infraestructura acorde a la complejidad del problema, también brinda al usuario atención y prevención.'
+            'descripcion'=>'La sala de corta estancia ofrece el servicio en un ambiente agradable, con infraestructura acorde a la complejidad del problema, también brinda al usuario atención y prevención.',
+            'cama'=>$cama
         ]);
         DB::table('servicio')->insert([
             'nombre'=>'Ginecologia',

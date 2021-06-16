@@ -10,7 +10,7 @@ use Intervention\Image\Facades\Image;
 class Paciente extends Model
 {
     protected $table = "paciente";
-    protected $fillable=['nombre','apellido_p','apellido_m','ci','direccion','celular','fecha_nac','genero','foto'];
+    protected $fillable=['nombre','apellido_p','apellido_m','ci','direccion','celular','fecha_nac','genero','estado','foto'];
 
     public static function setFoto($foto, $actual = false) //foto (al crear), actual (al editar)
     {

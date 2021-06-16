@@ -255,16 +255,16 @@
                             </td>
                         </tr>
                     </table>
-                @if ($gabinete==null)
-                    <br><br><br>
-                    <table  width="100%" align="center">
-                        <tr>
-                            <th>
-                                {{$consulta->doctor}}
-                            </th>
-                        </tr>
-                    </table>
-                @else
+                    @if ($gabinete==null)
+                        <br><br><br>
+                        <table  width="100%" align="center">
+                            <tr>
+                                <th>
+                                    {{$consulta->doctor}}
+                                </th>
+                            </tr>
+                        </table>
+                    @else
                     <div style="page-break-after:always;"></div>
                     <h2 style="text-align: center"><FONT COLOR='#0f0fa0'><u>Estudio de Gabinete</u></FONT></h2>
                         <table width="100%" border="1">

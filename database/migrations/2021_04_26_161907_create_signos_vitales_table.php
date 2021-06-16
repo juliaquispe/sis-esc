@@ -21,6 +21,7 @@ class CreateSignosVitalesTable extends Migration
             $table->string('p_a',7)->nullable();
             $table->Integer('f_c')->nullable();
             $table->Integer('f_r')->nullable();
+            $table->enum('estado', ['0' , '1'])->default('0');
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
             $table->timestamps();

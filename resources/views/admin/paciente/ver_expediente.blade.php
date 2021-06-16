@@ -449,48 +449,51 @@
                     {{$historial->o_detalles}}
                 </textarea>
             </table>
-            <table  width="100%">
-                <tr>
-                    <th wihth="100%" style="text-align: center" colspan="6">
-                        Antecedentes Ginecológicos
-                    </th>
-                </tr>
-                <tr>
-                    <td width="15%">
-                        Embarazos
-                    </td>
-                    <td width="18%">
-                        @if ($historial->g_embarazos=='si')
-                            <FONT COLOR='green'><i><b>SI</b></i></FONT>
-                        @else
-                            <FONT COLOR='red'>NO</FONT>
-                        @endif
-                    </td>
-                    <td width="15%">
-                        Gestante
-                    </td>
-                    <td width="18%">
-                        @if ($historial->g_gestante=='si')
-                            <FONT COLOR='green'><i><b>SI</b></i></FONT>
-                        @else
-                            <FONT COLOR='red'>NO</FONT>
-                        @endif
-                    </td>
-                    <td width="17%">
-                        Cancer de Mama
-                    </td>
-                    <td width="16%">
-                        @if ($historial->g_c_mama=='si')
-                            <FONT COLOR='green'><i><b>SI</b></i></FONT>
-                        @else
-                            <FONT COLOR='red'>NO</FONT>
-                        @endif
-                    </td>
-                </tr>
-                <textarea name="1" cols="30" rows="20">
-                    {{$historial->g_detalles}}
-                </textarea>
-            </table>
+            @if ($paciente->genero=='Mujer' )
+                <table  width="100%">
+                    <tr>
+                        <th wihth="100%" style="text-align: center" colspan="6">
+                            Antecedentes Ginecológicos
+                        </th>
+                    </tr>
+                    <tr>
+                        <td width="15%">
+                            Embarazos
+                        </td>
+                        <td width="18%">
+                            @if ($historial->g_embarazos=='si')
+                                <FONT COLOR='green'><i><b>SI</b></i></FONT>
+                            @else
+                                <FONT COLOR='red'>NO</FONT>
+                            @endif
+                        </td>
+                        <td width="15%">
+                            Gestante
+                        </td>
+                        <td width="18%">
+                            @if ($historial->g_gestante=='si')
+                                <FONT COLOR='green'><i><b>SI</b></i></FONT>
+                            @else
+                                <FONT COLOR='red'>NO</FONT>
+                            @endif
+                        </td>
+                        <td width="17%">
+                            Cancer de Mama
+                        </td>
+                        <td width="16%">
+                            @if ($historial->g_c_mama=='si')
+                                <FONT COLOR='green'><i><b>SI</b></i></FONT>
+                            @else
+                                <FONT COLOR='red'>NO</FONT>
+                            @endif
+                        </td>
+                    </tr>
+                    <textarea name="1" cols="30" rows="20">
+                        {{$historial->g_detalles}}
+                    </textarea>
+                </table>
+            @endif
+
             <div style="page-break-after:always;"></div>
         @endif
         @php

@@ -24,7 +24,7 @@
                 <div>
                     <span class="profile-picture">
                         @if ($datos->foto==null)
-                        <img src="{{asset("assets/$theme/assets/images/avatars/foto.jpeg")}}" height="270px" width="350px"/>
+                        <img src="{{asset("assets/$theme/assets/images/avatars/foto.jpg")}}" height="270px" width="350px"/>
                         @else
                         <img src="{{Storage::url("Datos/Clinica/$datos->foto")}}" height="270px" width="350px"/>
                         @endif

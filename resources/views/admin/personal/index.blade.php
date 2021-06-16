@@ -75,7 +75,7 @@
                                     @if(Auth::user()->rol->eliminar ==1)
                                         <form action="{{route('inactivar_personal', ['id' => $per->id])}}" class="d-inline form-estado" method="POST" id="form-estado">
                                             @csrf @method("put")
-                                            <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Inactivar Personal">
+                                            <button type="submit" class="btn btn-danger btn-xs eliminar tooltipsC" title="Retirar Personal">
                                                 <i class="ace-icon fa fa-ban"></i>
                                             </button>
                                         </form>

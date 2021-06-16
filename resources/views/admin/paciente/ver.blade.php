@@ -12,7 +12,7 @@
             <h1 style="text-color:pink" class="center"><u><b>EXPEDIENTE CLÍNICO</b></u></h1>
            <div class="box-tools pull-right">
                 @if(Auth::user()->rol->editar ==1)
-                    <a href="{{route('paciente')}}" class="btn btn-warning btn-xs tooltipC" title="Editar Clinica">
+                    <a href="{{route('paciente')}}" class="btn btn-warning btn-xs tooltipC" title="Volver">
                         <i class="fa fa-fw fa-reply-all"></i> Volver
                     </a>
                 @endif
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                             <div class="profile-info-row">
-                                <div class="profile-info-name"><u>Genero</u>:</div>
+                                <div class="profile-info-name"><u>Género</u>:</div>
                                 <div class="profile-info-value">
                                     <span class="editable"><i>{{$paciente->genero}}</i></span>
                                 </div>
@@ -129,7 +129,7 @@
                         </div>
                     </div>
                 @else
-                    <h4 class="center" style="color: rgb(36, 95, 129)">Signos Vitales de su última Consulta</h4>
+                    <h4 class="center" style="color: rgb(36, 95, 129)">Signos Vitales de su última Consulta ({{$aux_fecha}})</h4>
                     <table id="tabla" class="table  table-bordered table-hover" >
                         <tr style="background: rgb(204, 228, 250)">
                             <th class="col-lg-1.6" style="text-align: center;"><i class="glyphicon glyphicon-arrow-up" style="color:rgb(150, 87, 231)"></i> <u>Altura</u></th>

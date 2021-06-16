@@ -19,6 +19,11 @@ Consulta
                     <i class="fa fa-save">
                         Terminar Consulta
                     </i>
+                </button> &nbsp;&nbsp;&nbsp;
+                <button class="btn btn-inverse pull-right" onclick="location.href='{{route('crear_internacion', ['id' => $ficha->id])}}'">
+                    <i class="fa fa-bed">
+                        Pasar a Internación
+                    </i>
                 </button>
             </h1>
         </div>
@@ -27,9 +32,9 @@ Consulta
                 <div>
                     <span class="profile-picture">
                         @if ($paciente->foto==null)
-                        <img src="{{asset("assets/$theme/assets/images/avatars/dos.jpg")}}" height="130px" width="140px"/>
+                        <img src="{{asset("assets/$theme/assets/images/avatars/dos.jpg")}}" height="130px" width="130px"/>
                         @else
-                        <img src="{{Storage::url("Datos/Paciente/Foto/$paciente->foto")}}" height="130px" width="140px"/>
+                        <img src="{{Storage::url("Datos/Paciente/Foto/$paciente->foto")}}" height="130px" width="150px"/>
                         @endif
                     </span>
                     <span class="blue"><b>{{$paciente->nombre}} {{$paciente->apellido_p}} {{$paciente->apellido_m}}</b></span>
@@ -92,7 +97,11 @@ Consulta
             <div class="col-xs-12 col-sm-6">
                 <div class="">
                     <div class="align-center">
-                        <label for="" class="blue">Últimos Signos Vitales</label>
+                        @if ($SVM==NULL)
+                            <label for="" class="blue">Últimos Signos Vitales</label>
+                        @else
+                            <label for="" class="blue">Últimos Signos Vitales ({{$aux_fecha}})</label>
+                        @endif
                     </div>
                     <table id="tabla" class="table  table-bordered table-hover" >
                         <tr style="background: rgb(237, 243, 247)">

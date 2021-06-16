@@ -41,21 +41,9 @@
                             <div class="profile-info-row">
                                 <div class="profile-info-name"><u>Hora</u>:</div>
                                 <div class="profile-info-value">
-                                    <input type="time" class="form-control" id="hora" name="hora" min="07:00" max="20:00" value="{{old('hora', $ficha->hora ?? '08:00')}}" required/>
+                                    <input type="time"class="hora form-control" name="hora" id="hora" required/>
                                 </div>
                             </div>
-                            {{-- <div class="profile-info-row">
-                                <div class="profile-info-name"><u>Doctor</u>:</div>
-                                <div class="profile-info-value">
-                                    <select id="doctor" name="doctor" class="col-xs-12">
-                                        <option value="">Seleccione doctor</option>
-                                        <option value="ggg">Benigno</option>
-                                        <option value="apellido_p">Cristian</option>
-                                        <option value="apellido_m">Paola</option>
-                                        <option value="ci">Ingrid</option>
-                                    </select>
-                                </div>
-                            </div> --}}
                             <input type="hidden" id="paciente_id" name="paciente_id" value="{{$paciente->id}}">
                             <input type="hidden" id="servicio_id" name="servicio_id" value="{{$servicio->id}}">
                             </div>

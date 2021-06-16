@@ -29,7 +29,6 @@
     <div class="col-lg-2">
         <form action="{{route('imprimir_gabinete', ['id'=>$consulta->id])}}" target="{{$consulta->id}}">
             <button class="btn btn-warning" type="submit" id="Imprimir_g" name="" style="display: none;"><i class="fa fa-print"> IMPRIMIR</i></button>
-
         </form>
     </div>
     <div class="col-lg-3"></div>

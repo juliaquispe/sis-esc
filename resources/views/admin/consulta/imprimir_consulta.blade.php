@@ -61,7 +61,6 @@
             <tr>
                 <th style="text-align: center" width="14%">Altura</th>
                 <th style="text-align: center" width="14%">Peso</th>
-                {{-- <th style="text-align: center" width="14%">IMC</th> --}}
                 <th style="text-align: center" width="16%">Temperatura</th>
                 <th style="text-align: center" width="14%">P.A.</th>
                 <th style="text-align: center" width="14%">F.C.</th>
@@ -82,7 +81,6 @@
                         {{$signos_vitales->peso}} kg
                     @endif
                 </td>
-                {{-- <td style="text-align: center">{{}}</td> --}}
                 <td style="text-align: center">
                     @if ($signos_vitales->temperatura==null)
                         <FONT COLOR='red'>Sin Registro</FONT>
@@ -165,7 +163,7 @@
                 </td>
             </tr>
         </table>
-        @if ($receta!=null)
+        {{-- @if ($receta!=null)
             <h3 style="text-align: center"><FONT COLOR='#0f0fa0'><u>RECETA MÉDICA</u></FONT></h3>
             <table  width="100%" border="1">
                 <tr style="background:rgb(192, 221, 255)">
@@ -196,7 +194,7 @@
                     <td>{{$receta->indicacion}}</td>
                 </tr>
             </table>
-        @endif
+        @endif --}}
         <br><br><br><br>
         <table  width="100%" align="center">
             <tr>

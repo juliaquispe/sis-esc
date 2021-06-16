@@ -13,6 +13,7 @@ class CreateServicioTable extends Migration
             $table->string('nombre',50)->unique();
             $table->string('descripcion',250)->nullable();
             $table->string('foto',10)->nullable();
+            $table->text('cama')->nullable();
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_spanish_ci';
             $table->timestamps();

@@ -1,6 +1,6 @@
 $(document).ready(function(){
     SIS.validacionGeneral('form-general'); //form-general porq con ese id lo creamos al form
-
+});
     var f=new Date();
     var a=f.getFullYear();
     var m=f.getMonth()+1;
@@ -19,4 +19,6 @@ $(document).ready(function(){
     $('#ver_fecha').flatpickr({
         dateFormat: "Y-m-d",
     });
-});
+
+
+

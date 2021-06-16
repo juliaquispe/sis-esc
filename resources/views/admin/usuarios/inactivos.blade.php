@@ -6,6 +6,7 @@
 <script src="{{asset("assets/pages/scripts/alert/alert.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/usuario/index.js")}}" type="text/javascript"></script>
 <script src="{{asset("assets/pages/scripts/usuario/estado.js")}}" type="text/javascript"></script>
+<script src="{{asset("assets/pages/scripts/datatables/datatables.js")}}" type="text/javascript"></script>
 @endsection
 @section('contenido')
 <div class="page-header">
@@ -43,7 +44,7 @@
                                         <i class="fa fa-fw  fa-camera"></i>
                                         @csrf
                                     </a>
-                                </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>&nbsp;
                                 <div class="hidden-sm hidden-xs btn-group">
                                     @if(Auth::user()->rol->editar ==1)
                                         <form action="{{route('activar_usuario', ['id' => $usuarios->id])}}" class="d-inline form-estado" method="POST" id="form-estado">
@@ -53,7 +54,7 @@
                                             </button>
                                         </form>
                                     @endif
-                                </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                                </div>&nbsp;
                                 <div class="hidden-sm hidden-xs btn-group">
                                     @if(Auth::user()->rol->eliminar ==1)
                                         <form action="{{route('eliminar_usuario', ['id' => $usuarios->id])}}" class="d-inline form-eliminar" method="POST" id="form-eliminar">

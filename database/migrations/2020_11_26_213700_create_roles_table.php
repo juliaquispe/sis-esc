@@ -25,3 +25,4 @@ class CreateRolesTable extends Migration
         Schema::dropIfExists('roles');
     }
 }
+
