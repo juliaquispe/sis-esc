@@ -3,30 +3,33 @@
     $aux=$aux->format('Y-m-d');
 @endphp
 <input type="hidden" id="fecha" name="fecha" value="{{$aux}}">
+<input type="hidden" id="paciente_id" name="paciente_id" value="{{$paciente->id}}">
 <div class="col-lg-12">
     <div class="col-lg-6">
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right requerido" for="form-field-1"> Nombre </label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" minlength="2" maxlength="80" placeholder="Ingrese Nombre" id="nombre" name="nombre" value="{{old('nombre', $data->nombre ?? '')}}" required onkeyup="NombreMayus()"/>
+        <div class="profile-user-info profile-user-info-striped">
+            <div class="profile-info-row">
+                <div class="profile-info-name"><u>Nombres </u>:</div>
+                <div class="profile-info-value">
+                    <span class="editable"><i>{{$paciente->nombre}}</i></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right requerido" for="form-field-1"> Apellidos </label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" minlength="2" maxlength="80" placeholder="Ingrese Apellidos"  id="apellido" name="apellido" value="{{old('apellido', $data->apellido ?? '')}}" required onkeyup="ApeMayus()"/>
+            <div class="profile-info-row">
+                <div class="profile-info-name"><u>Apellidos </u>:</div>
+                <div class="profile-info-value">
+                    <span class="editable"><i>{{$paciente->apellido_p}} {{$paciente->apellido_m}}</i></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right requerido" for="form-field-1"> Fecha de Nacimiento</label>
-            <div class="col-sm-9">
-                <input type="date" min="1920-01-01" name="fecha_nac" id="fecha_nac" class="form-control" value="{{old('fecha_nac', $data->fecha_nac ?? '')}}" required/>
+            <div class="profile-info-row">
+                <div class="profile-info-name"><u>Edad </u>:</div>
+                <div class="profile-info-value">
+                    <span class="editable"><i>{{$edad=MyHelper:: Edad_Paciente($paciente->fecha_nac, "j")}}</i></span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> Doctor o lugar previo  </label>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" minlength="2" maxlength="50" placeholder="Ingrese Doctor o en lugar en el que fue atendido" id="previo" name="previo" value="{{old('previo', $data->previo ?? '')}}" onkeyup="PrvioMayus()"/>
+            <div class="profile-info-row">
+                <div class="profile-info-name"><u>Doctor o lugar previo</u>:</div>
+                <div class="profile-info-value col-lg-12">
+                    <input type="text" class="form-control" minlength="2" maxlength="50" placeholder="Ingrese Doctor o en lugar en el que fue atendido" id="previo" name="previo" value="{{old('previo', $data->previo ?? '')}}" onkeyup="PrvioMayus()"/>
+                </div>
             </div>
         </div>
     </div>
@@ -73,8 +76,8 @@
                             <div class="col-lg-8">
                                 <select name="tipo_i" id="tipo_i" class="form-control">
                                     <option value="">Seleccione su Opción</option>
-                                    <option value="intramuscular" {{old("tipo_i",$data->tipo_i?? "")=="intramuscular" ? "selected":""}}>Intramuscular</option>
-                                    <option value="intravenosa" {{old("tipo_i",$data->tipo_i?? "")=="intravenosa" ? "selected":""}}>Intravenosa</option>
+                                    <option value="Intramuscular" {{old("tipo_i",$data->tipo_i?? "")=="intramuscular" ? "selected":""}}>Intramuscular</option>
+                                    <option value="Intravenosa" {{old("tipo_i",$data->tipo_i?? "")=="intravenosa" ? "selected":""}}>Intravenosa</option>
                                     <option value="Intradérmica" {{old("tipo_i",$data->tipo_i?? "")=="Intradérmica" ? "selected":""}}>Intradérmica</option>
                                     <option value="Subcutánea" {{old("tipo_i",$data->tipo_i?? "")=="Subcutánea" ? "selected":""}}>Subcutánea</option>
                                 </select>
@@ -105,16 +108,16 @@
                                 <div class="col-lg-8">
                                     <select name="tipo_s" id="tipo_s" class="form-control">
                                         <option value="">Seleccione su Opción</option>
-                                        <option value="solucion salina normal" {{old("tipo_s",$data->tipo_s?? "")=="solucion salina normal" ? "selected":""}}>Solución Salina Normal</option>
-                                        <option value="solucion salina hipertonica" {{old("tipo_s",$data->tipo_s?? "")=="solucion salina hipertonica" ? "selected":""}}>Solución Salina Hipertónica</option>
-                                        <option value="solucion salina hipotonica" {{old("tipo_s",$data->tipo_s?? "")=="solucion salina hipotonica" ? "selected":""}}>Solución Salina Hipotónica</option>
-                                        <option value="solucion de ringer con lactado" {{old("tipo_s",$data->tipo_s?? "")=="solucion de ringer con lactado" ? "selected":""}}>Solución de Ringer con Lactado</option>
-                                        <option value="solucion de tipo plasmalyte" {{old("tipo_s",$data->tipo_s?? "")=="solucion de tipo plasmalyte" ? "selected":""}}>Solución de tipo Plasmalyte</option>
-                                        <option value="solucion de dextrosa al 5%" {{old("tipo_s",$data->tipo_s?? "")=="solucion de dextrosa al 5%" ? "selected":""}}>Solución de Dextrosa al 5%</option>
-                                        <option value="suero glucosado hipertonico" {{old("tipo_s",$data->tipo_s?? "")=="suero glucosado hipertonico" ? "selected":""}}>Suero Glucosado Hipertónico</option>
-                                        <option value="suero glucosalino" {{old("tipo_s",$data->tipo_s?? "")=="suero glucosalino" ? "selected":""}}>Suero Glucosalino</option>
-                                        <option value="suero natural" {{old("tipo_s",$data->tipo_s?? "")=="suero natural" ? "selected":""}}>Suero Natural</option>
-                                        <option value="suero artificial" {{old("tipo_s",$data->tipo_s?? "")=="suero artificial" ? "selected":""}}>Suero Artificial</option>                                </select>
+                                        <option value="Solucion salina normal" {{old("tipo_s",$data->tipo_s?? "")=="solucion salina normal" ? "selected":""}}>Solución Salina Normal</option>
+                                        <option value="Solucion salina hipertonica" {{old("tipo_s",$data->tipo_s?? "")=="solucion salina hipertonica" ? "selected":""}}>Solución Salina Hipertónica</option>
+                                        <option value="Solucion salina hipotonica" {{old("tipo_s",$data->tipo_s?? "")=="solucion salina hipotonica" ? "selected":""}}>Solución Salina Hipotónica</option>
+                                        <option value="Solucion de ringer con lactado" {{old("tipo_s",$data->tipo_s?? "")=="solucion de ringer con lactado" ? "selected":""}}>Solución de Ringer con Lactado</option>
+                                        <option value="Solucion de tipo plasmalyte" {{old("tipo_s",$data->tipo_s?? "")=="solucion de tipo plasmalyte" ? "selected":""}}>Solución de tipo Plasmalyte</option>
+                                        <option value="Solucion de dextrosa al 5%" {{old("tipo_s",$data->tipo_s?? "")=="solucion de dextrosa al 5%" ? "selected":""}}>Solución de Dextrosa al 5%</option>
+                                        <option value="Suero glucosado hipertonico" {{old("tipo_s",$data->tipo_s?? "")=="suero glucosado hipertonico" ? "selected":""}}>Suero Glucosado Hipertónico</option>
+                                        <option value="Suero glucosalino" {{old("tipo_s",$data->tipo_s?? "")=="suero glucosalino" ? "selected":""}}>Suero Glucosalino</option>
+                                        <option value="Suero natural" {{old("tipo_s",$data->tipo_s?? "")=="suero natural" ? "selected":""}}>Suero Natural</option>
+                                        <option value="Suero artificial" {{old("tipo_s",$data->tipo_s?? "")=="suero artificial" ? "selected":""}}>Suero Artificial</option>                                </select>
                                 </div>
                             </div>
                             <div class="col-lg-12 center">

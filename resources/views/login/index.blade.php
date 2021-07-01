@@ -27,7 +27,7 @@
                                     <span style="color: rgb(238, 221, 233)"><b><u>CLÍNICA</u></b></span>
                                     <font style="color: rgb(74, 143, 199)" size="6" face="impact"><u>SANTA TERESA</u></font>
                                 </div>
-								<h5 style="color: rgb(83, 226, 195)" id="id-company-text">Sistema de control de Historial y Fichaje </h5>
+								<h5 style="color: rgb(83, 226, 195)" id="id-company-text">Sistema de Administración de Historial y Fichaje </h5>
 							</div>
 							<div class="position-relative">
 								<div id="login-box" class="login-box visible widget-box no-border">

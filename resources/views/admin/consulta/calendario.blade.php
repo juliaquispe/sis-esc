@@ -26,7 +26,7 @@ Calendario
         @include('mensajes.correcto')
         @include('mensajes.error')
         <div class="box-tools pull-right">
-            <a href="{{route('consulta')}}" class="btn btn-block btn-info btn-sm">{{-- boton para ir a otra tabla --}}
+            <a href="{{route('fichaje')}}" class="btn btn-block btn-info btn-sm">{{-- boton para ir a otra tabla --}}
                 <style type="text/css">
                     .btn{
                     padding: 5px;
@@ -36,7 +36,7 @@ Calendario
                     }
                 </style>
                 <i class="fa fa-fw fa-reply-all"></i><b> Volver</b>
-              </a>
+            </a>
         </div>
         <h3 class="box-title center" style="color: rgb(78, 52, 102)"><b>Calendario</b></h3>
         <div class="col-lg-2"></div>

@@ -72,7 +72,7 @@ Consulta
                             </span>
                         </div>
                     </div>
-                    <div class="profile-info-row">
+                    {{-- <div class="profile-info-row">
                         <div class="profile-info-name"> T. Sangre </div>
                         <div class="profile-info-value">
                             <span>
@@ -83,7 +83,7 @@ Consulta
                                 @endif
                             </span>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="profile-info-row">
                         <div class="profile-info-name"> Género </div>
                         <div class="profile-info-value">

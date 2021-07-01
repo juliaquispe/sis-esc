@@ -46,13 +46,13 @@
                                 @endif
                             </td>
                             <td style="text-align: center;">
-                                <div class="hidden-sm hidden-xs btn-group">
+                                {{-- <div class="hidden-sm hidden-xs btn-group">
                                     <form action="{{route('retiro_forzoso', ['id' => $dato->id])}}" target="{{$dato->id}}" class="d-inline">
                                         <button type="submit" class="btn btn-primary btn-xs eliminar tooltipsC" title="Imprimir Documento de Retiro">
                                             <i class="fa fa fw fa-download"></i>
                                         </button>
                                     </form>
-                                </div>&nbsp;&nbsp;
+                                </div>&nbsp;&nbsp; --}}
                                 <div class="hidden-sm hidden-xs btn-group">
                                     <form action="{{route('imprimir_todo', ['id' => $dato->id])}}" target="{{$dato->id}}" class="d-inline">
                                         <button type="submit" class="btn btn-inverse btn-xs eliminar tooltipsC" title="Imprimir Internación">

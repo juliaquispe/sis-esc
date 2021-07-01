@@ -230,6 +230,8 @@
                 </th>
             </tr>
         </table><br><br>
+        <div style="page-break-after:always;"></div>
+
         <table align="center" width="100%">
             <tr>
                 <td>
@@ -270,11 +272,13 @@
                 <td width="60%"><b>EVOLUCIONES Y ÓRDENES MÉDICAS </b></td>
                 <td width="20%"><b>FIRMA Y SELLO</b></td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <hr><br>            <hr><br>            <hr><br>            <hr><br>
+            <hr><br>            <hr><br>            <hr><br>            <hr><br>
+            <hr><br>            <hr><br>            <hr><br>            <hr><br>
+            <hr><br>            <hr><br>            <hr><br>            <hr><br>
+            <hr><br>            <hr><br>            <hr><br>            <hr><br>
+            <hr><br>            <hr><br>            <hr><br>            <hr><br>
+            <hr><br>            <hr><br>            <hr><br>            <hr><br>
         </table>
 
     </body>

@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="{{asset("assets/css/zoom.css")}}"/>
     <div class="page-header">
         <h1>
-            <h1 style="text-color:pink" class="center"><u><b>EXPEDIENTE CLÍNICO</b></u></h1>
+            <h1 style="text-color:pink" class="center"><u><b>DATOS DEL PACIENTE</b></u></h1>
            <div class="box-tools pull-right">
                 @if(Auth::user()->rol->editar ==1)
                     <a href="{{route('paciente')}}" class="btn btn-warning btn-xs tooltipC" title="Volver">
@@ -209,11 +209,12 @@
                         <thead>
                             <tr style="background: rgb(239, 245, 209)">
                                 <th  style="text-align: center; width:10%"> <u>Fecha</u></th>
-                                <th  style="text-align: center; width:31%"> <u>Motivo</u></th>
-                                <th  style="text-align: center; width:31%"> <u>Diagnóstico</u></th>
+                                <th  style="text-align: center; width:26%"> <u>Motivo</u></th>
+                                <th  style="text-align: center; width:26%"> <u>Diagnóstico</u></th>
                                 <th  style="text-align: center; width:9%"> <u>Receta</u></th>
                                 <th  style="text-align: center; width:8%"> <u>E.G.</u></th>
-                                <th  style="text-align: center; width:11%"> <u>Opción</u></th>
+                                <th  style="text-align: center; width:11%"> <u>Internado</u></th>
+                                <th  style="text-align: center; width:10%"> <u>Opción</u></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -237,6 +238,13 @@
                                     </td>
                                     <td style="text-align: center;">
                                         @if($consulta["gabinete_id"]!="no")
+                                            <span class="badge badge-success"><i class="ace-icon glyphicon glyphicon-ok"></i></span>
+                                        @else
+                                            <span class="badge badge-danger"><i class="ace-icon glyphicon glyphicon-remove"></i></span>
+                                        @endif
+                                    </td>
+                                    <td style="text-align: center;">
+                                        @if($consulta["internacion_id"]!="no")
                                             <span class="badge badge-success"><i class="ace-icon glyphicon glyphicon-ok"></i></span>
                                         @else
                                             <span class="badge badge-danger"><i class="ace-icon glyphicon glyphicon-remove"></i></span>

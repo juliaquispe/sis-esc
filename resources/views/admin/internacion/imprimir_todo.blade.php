@@ -241,18 +241,15 @@
                     <tr>
                         <th>
                             @php
-                                $image = base64_encode(file_get_contents(public_path("storage/Datos/Internacion/Foto/$foto->foto")));
+                                $imagen = base64_encode(file_get_contents(public_path("storage/Datos/Internacion/Foto/$foto->foto")));
                             @endphp
-                            <img src="data:image/png;base64,{{$image}}" height="870px" width="630px"/>
+                            <img src="data:image/png;base64,{{$imagen}}" height="870px" width="630px"/>
                         </th>
                     </tr>
                 </table>
             @endforeach
         @endif
-        @if ($internacion->nombre_resp==null)
-            <div style="page-break-after:always;"></div>
-            <span>autorizado por medico</span>
-        @else
+        @if ($internacion->nombre_resp!=null)
             <div style="page-break-after:always;"></div>
             <table align="center" width="100%">
                 <tr>

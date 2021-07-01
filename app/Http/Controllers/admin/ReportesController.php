@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\Clinica;
 use App\Models\Admin\Enfermeria;
 use App\Models\Admin\Ficha;
+use App\Models\Admin\Internacion;
 use App\Models\Admin\Paciente;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
@@ -16,7 +17,6 @@ class ReportesController extends Controller
     {
         return view('admin.reportes.index');
     }
-
     public function imprimir(Request $request)
     {
         //dd($request->all());
@@ -102,41 +102,59 @@ class ReportesController extends Controller
                     $pdf=PDF::loadview('admin.reportes.imprimir_consulta', compact('clinica','image', 'datos', 'fecha_esp', 'fecha_ini', 'fecha_fin', 'titulo'));
                     return $pdf->stream('reporte.pdf');
                 } else {
-                    if ($request->t_enfermeria=="curacion") {
-                        # tabla enfermeria con atencion curacion
-                        $titulo="Curaciones";
-                        $datos=Enfermeria::where([
-                            ['fecha',$fecha_esp],
-                            ['atencion_c', 1]
-                        ])->get();
-                    } else {
-                        if ($request->t_enfermeria=="inyectable") {
-                            # tabla enfermeria con atencion inyect
-                            $titulo="Inyectables";
+                    if ($request->informe=="enfermeria") {
+                         if ($request->t_enfermeria=="curacion") {
+                            # tabla enfermeria con atencion curacion
+                            $titulo="Curaciones";
                             $datos=Enfermeria::where([
                                 ['fecha',$fecha_esp],
-                                ['atencion_i', 1]
+                                ['atencion_c', 1]
                             ])->get();
-
                         } else {
-                            if ($request->t_enfermeria=="sueros") {
-                                # tabla enfermeria con atencion sueros
-                                $titulo="Sueros";
+                            if ($request->t_enfermeria=="inyectable") {
+                                # tabla enfermeria con atencion inyect
+                                $titulo="Inyectables";
                                 $datos=Enfermeria::where([
                                     ['fecha',$fecha_esp],
-                                    ['atencion_s', 1]
+                                    ['atencion_i', 1]
                                 ])->get();
+
                             } else {
-                                # tabla enfermeria
-                                $titulo="Todas";
-                                $datos=Enfermeria::where([
-                                    ['fecha',$fecha_esp],
-                                ])->get();
+                                if ($request->t_enfermeria=="sueros") {
+                                    # tabla enfermeria con atencion sueros
+                                    $titulo="Sueros";
+                                    $datos=Enfermeria::where([
+                                        ['fecha',$fecha_esp],
+                                        ['atencion_s', 1]
+                                    ])->get();
+                                } else {
+                                    # tabla enfermeria
+                                    $titulo="Todas";
+                                    $datos=Enfermeria::where([
+                                        ['fecha',$fecha_esp],
+                                    ])->get();
+                                }
                             }
                         }
+                        $pdf=PDF::loadview('admin.reportes.imprimir_enfermeria', compact('clinica','image', 'datos', 'fecha_esp', 'fecha_ini', 'fecha_fin', 'titulo'));
+                        return $pdf->stream('reporte.pdf');
+                    } else {
+                        if ($request->t_internacion=="activos") {
+                            $titulo="Activos";
+                            $datos=Internacion::where([
+                                ['fecha_ingreso',$fecha_esp],
+                                ['estado', 0]
+                            ])->get();
+                        } else {
+                            $titulo="Dados de Alta";
+                            $datos=Internacion::where([
+                                ['fecha_ingreso',$fecha_esp],
+                                ['estado', 1]
+                            ])->get();
+                        }
+                        $pdf=PDF::loadview('admin.reportes.imprimir_internacion', compact('clinica','image', 'datos', 'fecha_esp', 'fecha_ini', 'fecha_fin', 'titulo'));
+                        return $pdf->stream('reporte.pdf');
                     }
-                    $pdf=PDF::loadview('admin.reportes.imprimir_enfermeria', compact('clinica','image', 'datos', 'fecha_esp', 'fecha_ini', 'fecha_fin', 'titulo'));
-                    return $pdf->stream('reporte.pdf');
                 }
             }
         } else {
@@ -222,44 +240,64 @@ class ReportesController extends Controller
                     $pdf=PDF::loadview('admin.reportes.imprimir_consulta', compact('clinica','image', 'datos', 'fecha_esp', 'fecha_ini', 'fecha_fin', 'titulo'));
                     return $pdf->stream('reporte.pdf');
                 } else {
-                    if ($request->t_enfermeria=="curacion") {
-                        # tabla enfermeria con atencion curacion
-                        $titulo="Curaciones";
-                        $datos=Enfermeria::where([
-                            ['fecha','>=',$fecha_ini],
-                            ['fecha','<=',$fecha_fin],
-                            ['atencion_c', 1]
-                        ])->orderBy('fecha')->get();
-                    } else {
-                        if ($request->t_enfermeria=="inyectable") {
-                            # tabla enfermeria con atencion inyect
-                            $titulo="Inyectables";
+                    if ($request->informe=="enfermeria") {
+                        if ($request->t_enfermeria=="curacion") {
+                            # tabla enfermeria con atencion curacion
+                            $titulo="Curaciones";
                             $datos=Enfermeria::where([
                                 ['fecha','>=',$fecha_ini],
                                 ['fecha','<=',$fecha_fin],
-                                ['atencion_i', 1]
+                                ['atencion_c', 1]
                             ])->orderBy('fecha')->get();
                         } else {
-                            if ($request->t_enfermeria=="sueros") {
-                                # tabla enfermeria con atencion sueros
-                                $titulo="Sueros";
+                            if ($request->t_enfermeria=="inyectable") {
+                                # tabla enfermeria con atencion inyect
+                                $titulo="Inyectables";
                                 $datos=Enfermeria::where([
                                     ['fecha','>=',$fecha_ini],
                                     ['fecha','<=',$fecha_fin],
-                                    ['atencion_s', 1]
+                                    ['atencion_i', 1]
                                 ])->orderBy('fecha')->get();
                             } else {
-                                # tabla enfermeria
-                                $titulo="Todas";
-                                $datos=Enfermeria::where([
-                                    ['fecha','>=',$fecha_ini],
-                                    ['fecha','<=',$fecha_fin],
-                                ])->orderBy('fecha')->get();
+                                if ($request->t_enfermeria=="sueros") {
+                                    # tabla enfermeria con atencion sueros
+                                    $titulo="Sueros";
+                                    $datos=Enfermeria::where([
+                                        ['fecha','>=',$fecha_ini],
+                                        ['fecha','<=',$fecha_fin],
+                                        ['atencion_s', 1]
+                                    ])->orderBy('fecha')->get();
+                                } else {
+                                    # tabla enfermeria
+                                    $titulo="Todas";
+                                    $datos=Enfermeria::where([
+                                        ['fecha','>=',$fecha_ini],
+                                        ['fecha','<=',$fecha_fin],
+                                    ])->orderBy('fecha')->get();
+                                }
                             }
                         }
+                        $pdf=PDF::loadview('admin.reportes.imprimir_enfermeria', compact('clinica','image', 'datos', 'fecha_esp', 'fecha_ini', 'fecha_fin', 'titulo'));
+                        return $pdf->stream('reporte.pdf');
+                    } else {
+                        if ($request->t_internacion=="activos") {
+                            $titulo="Activos";
+                            $datos=Internacion::where([
+                                ['fecha_ingreso','>=',$fecha_ini],
+                                ['fecha_ingreso','<=',$fecha_fin],
+                                ['estado', 0]
+                            ])->get();
+                        } else {
+                            $titulo="Dados de Alta";
+                            $datos=Internacion::where([
+                                ['fecha_ingreso','>=',$fecha_ini],
+                                ['fecha_ingreso','<=',$fecha_fin],
+                                ['estado', 1]
+                            ])->get();
+                        }
+                        $pdf=PDF::loadview('admin.reportes.imprimir_internacion', compact('clinica','image', 'datos', 'fecha_esp', 'fecha_ini', 'fecha_fin', 'titulo'));
+                        return $pdf->stream('reporte.pdf');
                     }
-                    $pdf=PDF::loadview('admin.reportes.imprimir_enfermeria', compact('clinica','image', 'datos', 'fecha_esp', 'fecha_ini', 'fecha_fin', 'titulo'));
-                    return $pdf->stream('reporte.pdf');
                 }
             }
         }

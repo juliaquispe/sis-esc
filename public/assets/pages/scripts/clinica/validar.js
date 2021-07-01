@@ -15,7 +15,7 @@ $(document).ready(function(){
     $('#logo').fileinput({
         language: 'es',     //lenguaje
         allowedFileExtensions: ['jpg', 'jpeg', 'png'], //archivos permitidos
-        maxFileSize: 1000,  //tamaño maximo 3mb
+        maxFileSize: 1000,  //tamaño maximo 1mb
         showUpload: false,  //no mostratra el boton upload
         showClose: false,   //no mostratra el boton close
         initialPreviewAsData: true,     //mostrar una imagen previa

@@ -63,6 +63,10 @@ class UsuarioController extends Controller
             $usuario=Usuario::findOrFail($id);
             if (Usuario::destroy($id)) {
                 Storage::disk('public')->delete("Datos/Fotos/Usuario/$usuario->foto");
+                if($usuario->personal_id!=null){
+                    $personal= Personal::findOrFail($usuario->personal_id);
+                    $personal->update(['sistema'=>'no']);
+                }
                 return response()->json(['mensaje' => 'ok']);
             } else {
                 return response()->json(['mensaje' => 'ng']);

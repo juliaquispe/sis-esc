@@ -14,7 +14,7 @@
              Editar Ficha
         </small>
         <div class="box-tools pull-right">
-            <a href="{{route('consulta')}}" class="btn btn-block btn-info btn-sm">{{-- boton para ir a otra tabla --}}
+            <a href="{{route('fichaje')}}" class="btn btn-block btn-info btn-sm">{{-- boton para ir a otra tabla --}}
                 <style type="text/css">
                     .btn{
                     padding: 5px;

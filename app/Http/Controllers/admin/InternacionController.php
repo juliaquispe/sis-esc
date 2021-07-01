@@ -95,11 +95,12 @@ class InternacionController extends Controller
 
     public function edit($id)
     {
-        Ficha::findOrFail($id)->update([
-            'estado'=>1
-        ]);
+
         $dato = Internacion::findOrFail($id);
         $consulta = Consulta::findOrFail($dato->consulta_id);
+        Ficha::findOrFail($consulta->ficha_id)->update([
+            'estado'=>1
+        ]);
         $ficha = Ficha:: findOrFail($consulta->ficha_id);
         $signos_vitales_vector=Signos_Vitales::where('consulta_id',$consulta->id)->get();
         $SVM=Signos_vitales::findOrFail($signos_vitales_vector[0]["id"]);

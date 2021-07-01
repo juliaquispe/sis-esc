@@ -15,7 +15,7 @@ $(document).ready(function(){
     $('#documento').fileinput({
         language: 'es',     //lenguaje
         allowedFileExtensions: ['pdf'], //archivos permitidos
-        maxFileSize: 3000,  //tamaño maximo 10mb
+        maxFileSize: 3000,  //tamaño maximo 3 mb
         showUpload: false,  //no mostratra el boton upload
         showClose: false,   //no mostratra el boton close
         initialPreviewFileType: 'pdf',

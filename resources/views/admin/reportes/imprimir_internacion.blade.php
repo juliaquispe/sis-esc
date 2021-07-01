@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Reporte de Enfermeria</title>
+        <title>Reporte de Internación</title>
         <meta charset="utf-8"/>
     </head>
     <body>
@@ -27,7 +27,7 @@
         <table  width="100%">
             <tr>
                 <th width="50%" align="left">
-                    Reporte de Enfermería - {{$titulo}}
+                    Reporte de Internos - {{$titulo}}
                 </th>
                 @php
                     $aux = new \DateTime();
@@ -57,9 +57,6 @@
         <table  align="center">
             @php
                 $contador=1;
-                $curacion=0;
-                $inyectable=0;
-                $suero=0;
             @endphp
             @if ($fecha_esp==null)
                 <tr>
@@ -73,42 +70,28 @@
         <table align="center" width="100%">
             <tr>
                 <th width="10%">Nro</th>
-                <th width="20%">Fecha</th>
-                <th width="30%">Nombres y Apellidos</th>
-                <th width="10%">Edad</th>
-                <th width="30%">Tipo de Atención</th>
+                <th width="18%">F. Ingreso</th>
+                <th width="18%">F. Salida</th>
+                <th width="40%">Nombres y Apellidos</th>
+                <th width="14%">Contacto</th>
             </tr>
             @foreach ($datos as $dato)
-                @php
-                    $cadena="";
-                @endphp
                 <tr align="center">
                     <td>{{$contador}}</td>
-                    <td>{{$dato->fecha}}</td>
-                    <td align="left">{{$dato->paciente->nombre}} {{$dato->paciente->apellido_p}} {{$dato->paciente->apellido_m}}</td>
-                    <td>{{$edad= MyHelper::Edad_Paciente($dato->paciente->fecha_nac,"index")}}</td>
+                    <td>{{$dato->fecha_ingreso}}</td>
                     <td>
-                        @if ($titulo=="Curaciones")
-                            Curación
+                        @if ($dato->fecha_salida==null)
+                            <span><FONt>Aún Interado</FONt></span>
                         @else
-                            @if ($titulo=="Inyectables")
-                                Inyectable
-                            @else
-                                @if ($titulo=="Sueros")
-                                    Suero
-                                @else
-                                    @if ($dato->atencion_c==1)
-                                        @php $curacion++; $cadena=$cadena."-Curación " @endphp
-                                    @endif
-                                    @if ($dato->atencion_i==1)
-                                        @php $inyectable++; $cadena=$cadena."-Inyectable " @endphp
-                                    @endif
-                                    @if ($dato->atencion_s==1)
-                                        @php $suero++; $cadena=$cadena."-Suero " @endphp
-                                    @endif
-                                    {{$cadena}}
-                                @endif
-                            @endif
+                            {{$dato->fecha_salida}}
+                        @endif
+                    </td>
+                    <td align="left">{{$dato->paciente->nombre}} {{$dato->paciente->apellido_p}} {{$dato->paciente->apellido_m}}</td>
+                    <td>
+                        @if ($dato->paciente->celular==null)
+                            <span>{{"No Registrado"}}</span>
+                        @else
+                            {{$dato->paciente->celular}}
                         @endif
                     </td>
                 </tr>
@@ -119,14 +102,13 @@
         </table>
         <hr>
         <table align="center">
-            @if ($titulo=="Todas")
-                <tr>
-                    <td align="center">
-                        Total de Atenciones Prestadas: <b>"{{$curacion+$inyectable+$suero}}"</b>&nbsp;&nbsp;&nbsp; Curaciones: <b>"{{$curacion}}"</b>&nbsp;&nbsp;&nbsp; Inyectables: <b>"{{$inyectable}}"</b> Sueros: <b>"{{$suero}}"</b>
-                    </td>
-                </tr>
-            @endif
-
+            <tr>
+                <td align="center">
+                    Total: <b>"{{$datos->count()}}"
+                </td>
+            </tr>
         </table>
     </body>
 </html>
+
+

@@ -16,7 +16,7 @@
     </h1>
 </div>
 <div class="row">
-    <div class="col-xs-6 col-sm-3 pricing-box">
+    <div class="col-xs-6 col-lg-3 pricing-box">
         <div class="widget-box widget-color-dark">
             <div class="widget-header">
                 <h3 class="center"><i><b>Misión</b></i></h3>
@@ -72,7 +72,7 @@
         </div>
         </div>
     </div>
-    <div class="col-xs-6 col-sm-3 pricing-box">
+    <div class="col-xs-6 col-lg-3 pricing-box">
         <div class="widget-box widget-color-blue">
             <div class="widget-header">
                 <h3 class="center"><i><b>Visión</b></i></h3>
@@ -84,7 +84,7 @@
             </div>
         </div>
     </div>
-</div> <br><br>
+</div> <br><br><br><br>
 <div class="row">
     <div class="col-lg-3 col-xs-6 center" >
         <div class="infobox infobox-green infobox-lg infobox-dark center">

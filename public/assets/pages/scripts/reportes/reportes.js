@@ -25,11 +25,13 @@ var fechaactual=a+"-"+m+"-"+d;
 var $div_t_paciente = document.getElementById("div_t_paciente")
 var $div_t_consulta = document.getElementById("div_t_consulta")
 var $div_t_enfermeria = document.getElementById("div_t_enfermeria")
+var $div_t_internacion = document.getElementById("div_t_internacion")
 $('#informe').change(function(){
     if ($('#informe').val()=="") {
         $div_t_paciente.style.display='none';
         $div_t_consulta.style.display='none';
         $div_t_enfermeria.style.display='none';
+        $div_t_internacion.style.display='none';
     } else {
         $('#fecha_esp').val("");
         $('#fecha_ini').val("");
@@ -38,24 +40,41 @@ $('#informe').change(function(){
             $div_t_paciente.style.display='block';
             $div_t_consulta.style.display='none';
             $div_t_enfermeria.style.display='none';
+            $div_t_internacion.style.display='none';
             $('#t_paciente').prop('required', true);
             $('#t_consulta').prop('required', false);
             $('#t_enfermeria').prop('required', false);
+            $('#t_internacion').prop('required', false);
         } else {
             if ($('#informe').val()=="consulta") {
                 $div_t_paciente.style.display='none';
                 $div_t_consulta.style.display='block';
                 $div_t_enfermeria.style.display='none';
+                $div_t_internacion.style.display='none';
                 $('#t_paciente').prop('required', false);
                 $('#t_consulta').prop('required', true);
                 $('#t_enfermeria').prop('required', false);
+                $('#t_internacion').prop('required', false);
             } else {
-                $div_t_paciente.style.display='none';
-                $div_t_consulta.style.display='none';
-                $div_t_enfermeria.style.display='block';
-                $('#t_paciente').prop('required', false);
-                $('#t_consulta').prop('required', false);
-                $('#t_enfermeria').prop('required', true);
+                if ($('#informe').val()=="enfermeria") {
+                    $div_t_paciente.style.display='none';
+                    $div_t_consulta.style.display='none';
+                    $div_t_enfermeria.style.display='block';
+                    $div_t_internacion.style.display='none';
+                    $('#t_paciente').prop('required', false);
+                    $('#t_consulta').prop('required', false);
+                    $('#t_enfermeria').prop('required', true);
+                    $('#t_internacion').prop('required', false);
+                } else {
+                    $div_t_paciente.style.display='none';
+                    $div_t_consulta.style.display='none';
+                    $div_t_enfermeria.style.display='none';
+                    $div_t_internacion.style.display='block';
+                    $('#t_paciente').prop('required', false);
+                    $('#t_consulta').prop('required', false);
+                    $('#t_enfermeria').prop('required', false);
+                    $('#t_internacion').prop('required', true);
+                }
             }
         }
     }

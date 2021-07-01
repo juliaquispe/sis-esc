@@ -11,10 +11,9 @@ class CreateEnfermeriaConsultaTable extends Migration
     {
         Schema::create('enfermeria', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('paciente_id')->unsigned();
+            $table->foreign('paciente_id')->references('id')->on('paciente')->onDelete('restrict');
             $table->date('fecha');
-            $table->string('nombre',50);
-            $table->string('apellido',50);
-            $table->date('fecha_nac');
             $table->string('previo',50)->nullable();
             $table->text('detalles_c')->nullable();
             $table->string('tipo_i',20)->nullable();
